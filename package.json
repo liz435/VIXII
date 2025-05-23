@@ -12,18 +12,21 @@
   "dependencies": {
     "@headlessui/react": "^2.1.1",
     "@heroicons/react": "^2.1.4",
+    "@sanity/client": "^7.3.0",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.89.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
     "feed": "^4.2.2",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.511.0",
     "next": "^14.2.29",
-    "next-sanity": "^9.4.7",
+    "next-sanity": "^9.11.1",
     "react": "^18",
     "react-dom": "^18",
     "react-use-measure": "^2.1.1",
-    "sanity": "^2.36.6"
+    "sanity": "^3.89.0",
+    "styled-components": "^6.1.18"
   },
   "devDependencies": {
     "@types/node": "^20",
