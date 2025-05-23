@@ -16,8 +16,8 @@ import { ArrowUpRight } from 'lucide-react';
 const links = [
   { href: '/pricing', label: 'Product' },
   { href: '/company', label: 'Company' },
-  { href: '/company', label: 'About Us' },
-  { href: '/company', label: 'Contact' },
+  { href: '/blog', label: 'About Us' },
+  { href: '/blog', label: 'Contact' },
 ]
 
 function DesktopNav() {
