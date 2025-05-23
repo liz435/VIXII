@@ -80,9 +80,9 @@ function FeatureSection() {
 function BentoSection() {
   return (
     <Container>
-      <Subheading>Sales</Subheading>
+      <Subheading>Strategy</Subheading>
       <Heading as="h3" className="mt-2 max-w-3xl">
-        Know more about your customers than they do.
+        Know more about what your capital can do.
       </Heading>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6">
@@ -110,13 +110,13 @@ function BentoSection() {
 
       <Subheading className="mt-16">Performance</Subheading>
       <Heading as="h3" className="mt-2 max-w-3xl">
-        Accelerate your sales process.
+        Stable strategies help with your confidence.
       </Heading>
       
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
         <BentoCard
-          eyebrow="Speed"
-          title="Built for power users"
+          eyebrow="Limitless"
+          title="Built for everyday users"
           description="It's never been faster to cold email your entire contact list using our streamlined keyboard shortcuts."
           graphic={
             <div className="flex size-full pl-10 pt-10">
@@ -126,16 +126,16 @@ function BentoSection() {
           className="lg:col-span-2 lg:rounded-bl-4xl"
         />
         <BentoCard
-          eyebrow="Source"
-          title="Get the furthest reach"
+          eyebrow="Confidence"
+          title="Get the stable return"
           description="Bypass those inconvenient privacy laws to source leads from the most unexpected places."
           graphic={<LogoCluster />}
           className="lg:col-span-2"
         />
         <BentoCard
-          eyebrow="Limitless"
-          title="Sell globally"
-          description="Radiant helps you sell in locations currently under international embargo."
+          eyebrow="Scale"
+          title="Globally"
+          description="VIXII helps you sell in locations currently under international embargo."
           graphic={<Map />}
           className="max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl"
         />
