@@ -12,17 +12,17 @@ export function LogoCloud({
     >
       <img
         alt="SavvyCal"
-        src="/logo-cloud/savvycal.svg"
+        src="/logo-cloud/jupiter.svg"
         className="h-9 max-sm:mx-auto sm:h-8 lg:h-12"
       />
       <img
         alt="Laravel"
-        src="/logo-cloud/laravel.svg"
+        src="/logo-cloud/solana.svg"
         className="h-9 max-sm:mx-auto sm:h-8 lg:h-12"
       />
       <img
         alt="Tuple"
-        src="/logo-cloud/tuple.svg"
+        src="/logo-cloud/drift2.png"
         className="h-9 max-sm:mx-auto sm:h-8 lg:h-12"
       />
       <img

@@ -124,7 +124,7 @@ function PricingCards() {
     <div className="relative py-24">
       <Gradient className="absolute inset-x-2 bottom-0 top-48 rounded-4xl ring-1 ring-inset ring-black/5" />
       <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="grid grid-rows-1 gap-8 lg:grid-rows-3">
           {tiers.map((tier, tierIndex) => (
             <PricingCard key={tierIndex} tier={tier} />
           ))}
@@ -507,7 +507,7 @@ export default function Pricing({
       </Container>
       <Header />
       <PricingCards />
-      <PricingTable selectedTier={tier} />
+      {/* <PricingTable selectedTier={tier} /> */}
       <Testimonial />
       <FrequentlyAskedQuestions />
       <Footer />

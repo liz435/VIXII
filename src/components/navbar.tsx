@@ -10,12 +10,14 @@ import { motion } from 'framer-motion'
 import { Link } from './link'
 import { Logo } from './logo'
 import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
+import { Button } from '@/components/button'
+import { ArrowUpRight } from 'lucide-react';
 
 const links = [
-  { href: '/pricing', label: 'Pricing' },
+  { href: '/pricing', label: 'Product' },
   { href: '/company', label: 'Company' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/login', label: 'Login' },
+  { href: '/blog', label: 'About Us' },
+  { href: '/blog', label: 'Contact' },
 ]
 
 function DesktopNav() {
@@ -31,7 +33,11 @@ function DesktopNav() {
           </Link>
         </PlusGridItem>
       ))}
-    </nav>
+
+      <PlusGridItem className="relative flex">
+      <Button href="/login" className=" mt-3 mb-3">Login &nbsp; <ArrowUpRight strokeWidth={1}/></Button>
+      </PlusGridItem>
+    </nav> 
   )
 }
 
