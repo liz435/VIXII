@@ -463,9 +463,9 @@ export default function Company() {
       <Container>
         <Navbar />
       </Container>
-      <Header />
+      {/* <Header /> */}
       <Team />
-      <Investors />
+      {/* <Investors /> */}
       <Careers />
       <Footer />
     </main>
