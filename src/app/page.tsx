@@ -16,6 +16,9 @@ import { Testimonials } from '@/components/testimonials'
 import { Heading, Subheading } from '@/components/text'
 import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import type { Metadata } from 'next'
+import ReturnChart from '@/components/return-chart'
+import { Suspense } from 'react'
+import "./global.css"
 
 export const metadata: Metadata = {
   description:
@@ -25,6 +28,7 @@ export const metadata: Metadata = {
 function Hero() {
   return (
     <div className="relative">
+      
       <Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-inset ring-black/5" />
       <Container className="relative">
         <Navbar
@@ -40,12 +44,12 @@ function Hero() {
         />
         <div className="flex flex-col items-center justify-center text-center pb-24 pt-16 sm:pb-32 sm:pt-24 md:pb-32 md:pt-32">
         <h1 className=" font-serif font-medium text-balance text-6xl/[0.9]  tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-8xl/[1.2]">
-          DeFi Hedge Fund Strategies for Everyone
+          Where Your On-chain Assets Grow Smarter
         </h1>
 
 
         <p className="mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">
-          A Blockchain Solution for Stable Profits
+          Redefining how crypto assets grow—unlocking DeFi’s potential for smarter, on-chain capital efficiency
         </p>
         <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
           <Button href="#">Get started</Button>
@@ -80,7 +84,7 @@ function FeatureSection() {
 function BentoSection() {
   return (
     <Container>
-      <Subheading>Strategy</Subheading>
+      <Subheading>Strategy -know more about how your capital grow</Subheading>
       <Heading as="h3" className="mt-2 max-w-3xl">
         Know more about what your capital can do.
       </Heading>
@@ -88,8 +92,8 @@ function BentoSection() {
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6">
         <BentoCard
           eyebrow="Insight"
-          title="Get perfect clarity"
-          description="Radiant uses social engineering to build a detailed financial picture of your leads. Know their budget, compensation package, social security number, and more."
+          title="Managed Beta, Designed for Resilience"
+          description="We develop timing strategies based on price and volume trends of major crypto assets, enhanced by tight position control—to outperform the market with fully automated trading and risk management."
           graphic={
             <div className="h-80 bg-[url(/screenshots/profile.png)] bg-[size:1000px_560px] bg-[left_-109px_top_-112px] bg-no-repeat" />
           }
@@ -98,8 +102,8 @@ function BentoSection() {
         />
         <BentoCard
           eyebrow="Analysis"
-          title="Undercut your competitors"
-          description="With our advanced data mining, you'll know which companies your leads are talking to and exactly how much they're being charged."
+          title="Automated Alpha, Engineered for DeFi"
+          description="Constructing alpha-driven strategies by capturing all arbitrage opportunities and applying robust hedging—across DEXs, CEXs, and multi-asset markets—for sustainable returns"
           graphic={
             <div className="absolute inset-0 bg-[url(/screenshots/competitors.png)] bg-[size:1100px_650px] bg-[left_-38px_top_-73px] bg-no-repeat" />
           }
@@ -109,26 +113,30 @@ function BentoSection() {
       </div>
 
       <Subheading className="mt-16">Performance</Subheading>
-      <Heading as="h3" className="mt-2 max-w-3xl">
-        Stable strategies help with your confidence.
+      <Heading as="h3" className="mt-2 max-w-3xl mb-12">
+        Discover Your Potential Returns.
       </Heading>
+
+          <Suspense> 
+          <ReturnChart/>
+          </Suspense>
       
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
         <BentoCard
           eyebrow="Limitless"
-          title="Built for everyday users"
-          description="It's never been faster to cold email your entire contact list using our streamlined keyboard shortcuts."
+          title="Actively Managed Trend Following Strategy"
+          description="100% USDT-denominated return in 2024, with a maximum drawdown of 30%."
           graphic={
             <div className="flex size-full pl-10 pt-10">
-              <Keyboard highlighted={['LeftCommand', 'LeftShift', 'D']} />
+              <Keyboard highlighted={[ 'U', 'S', 'D', 'T']} />
             </div>
           }
           className="lg:col-span-2 lg:rounded-bl-4xl"
         />
         <BentoCard
           eyebrow="Confidence"
-          title="Get the stable return"
-          description="Bypass those inconvenient privacy laws to source leads from the most unexpected places."
+          title="Hedging and Arbitrage Strategy Based on JLP"
+          description="40% USDT-denominated return in 2024, with a maximum drawdown of 1%"
           graphic={<LogoCluster />}
           className="lg:col-span-2"
         />
@@ -206,10 +214,14 @@ export default function Home() {
       <main>
         <Container className="mt-10">
           <LogoCloud />
+    
         </Container>
         <div className="bg-gradient-to-b from-white from-50% to-gray-100 py-32">
+    
+               
           <FeatureSection />
           <BentoSection />
+
         </div>
         {/* <DarkBentoSection /> */}
       </main>

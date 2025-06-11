@@ -1,28 +1,92 @@
-'use client'
+"use client"
 
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react'
-import { Bars2Icon } from '@heroicons/react/24/solid'
-import { motion } from 'framer-motion'
-import { Link } from './link'
-import { Logo } from './logo'
-import { PlusGrid, PlusGridItem, PlusGridRow } from './plus-grid'
-import { Button } from '@/components/button'
-import { ArrowUpRight } from 'lucide-react';
+import type React from "react"
+import { useState } from "react"
+
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react"
+import { Bars2Icon } from "@heroicons/react/24/solid"
+import { motion, AnimatePresence } from "framer-motion"
+import { Link } from "./link"
+import { Logo } from "./logo"
+import { PlusGrid, PlusGridItem, PlusGridRow } from "./plus-grid"
+import { Button } from "@/components/button"
+import { ArrowUpRight, BarChart3, MessageSquare, Megaphone } from "lucide-react"
 
 const links = [
-  { href: '/pricing', label: 'Product' },
-  { href: '/company', label: 'Company' },
-  { href: '/blog', label: 'About Us' },
-  { href: '/blog', label: 'Contact' },
+  { href: "/company", label: "About Us" },
+  { href: "/blog", label: "Contact" },
 ]
+
+const productCategories = [
+  {
+    href: "/products/analytics",
+    label: "Analytics & Insights",
+    description: "Track performance and gain valuable insights",
+    icon: BarChart3,
+  },
+  {
+    href: "/products/marketing",
+    label: "Marketing Tools",
+    description: "Grow your audience and boost engagement",
+    icon: Megaphone,
+  },
+  {
+    href: "/products/support",
+    label: "Customer Support",
+    description: "Deliver exceptional customer experiences",
+    icon: MessageSquare,
+  },
+]
+
+function ProductDropdown() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+      <button className="flex items-center px-4 py-6 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-black/[2.5%]">
+        Product
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute left-0 top-full z-50 pt-1 w-80 origin-top-left"
+          >
+            <div className="rounded-xl bg-white p-2 shadow-lg ring-1 ring-black/5">
+              {productCategories.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group flex items-start gap-3 rounded-lg p-3 hover:bg-gray-50"
+                >
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-gray-200">
+                    <item.icon className="size-5 text-gray-600" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-medium text-gray-900">{item.label}</div>
+                    <div className="text-sm text-gray-500">{item.description}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
 
 function DesktopNav() {
   return (
     <nav className="relative hidden lg:flex">
+      <PlusGridItem className="relative flex">
+        <ProductDropdown />
+      </PlusGridItem>
+
       {links.map(({ href, label }) => (
         <PlusGridItem key={href} className="relative flex">
           <Link
@@ -35,9 +99,11 @@ function DesktopNav() {
       ))}
 
       <PlusGridItem className="relative flex">
-      <Button href="/login" className=" mt-3 mb-3">Login &nbsp; <ArrowUpRight strokeWidth={1}/></Button>
+        <Button href="/login" className="mt-3 mb-3">
+          Login &nbsp; <ArrowUpRight strokeWidth={1} />
+        </Button>
       </PlusGridItem>
-    </nav> 
+    </nav>
   )
 }
 
@@ -56,14 +122,39 @@ function MobileNav() {
   return (
     <DisclosurePanel className="lg:hidden">
       <div className="flex flex-col gap-6 py-4">
+        {/* Product section with categories */}
+        <div>
+          <div className="text-base font-medium text-gray-950 mb-3">Product</div>
+          <div className="ml-4 space-y-3">
+            {productCategories.map((item, index) => (
+              <motion.div
+                initial={{ opacity: 0, rotateX: -90 }}
+                animate={{ opacity: 1, rotateX: 0 }}
+                transition={{
+                  duration: 0.15,
+                  ease: "easeInOut",
+                  rotateX: { duration: 0.3, delay: index * 0.1 },
+                }}
+                key={item.href}
+              >
+                <Link href={item.href} className="flex items-center gap-3 text-sm font-medium text-gray-700">
+                  <item.icon className="size-4" />
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Other navigation links */}
         {links.map(({ href, label }, linkIndex) => (
           <motion.div
             initial={{ opacity: 0, rotateX: -90 }}
             animate={{ opacity: 1, rotateX: 0 }}
             transition={{
               duration: 0.15,
-              ease: 'easeInOut',
-              rotateX: { duration: 0.3, delay: linkIndex * 0.1 },
+              ease: "easeInOut",
+              rotateX: { duration: 0.3, delay: (linkIndex + productCategories.length) * 0.1 },
             }}
             key={href}
           >
@@ -92,11 +183,7 @@ export function Navbar({ banner }: { banner?: React.ReactNode }) {
                 <Logo className="h-9" />
               </Link>
             </PlusGridItem>
-            {banner && (
-              <div className="relative hidden items-center py-3 lg:flex">
-                {banner}
-              </div>
-            )}
+            {banner && <div className="relative hidden items-center py-3 lg:flex">{banner}</div>}
           </div>
           <DesktopNav />
           <MobileNavButton />

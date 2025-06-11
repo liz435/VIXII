@@ -489,12 +489,12 @@ function FrequentlyAskedQuestions() {
   )
 }
 
-export default function Pricing({
-  searchParams,
-}: {
+type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  let tier =
+}
+
+export default function PricingPage({ searchParams }: Props) {
+  const tier =
     typeof searchParams.tier === 'string'
       ? tiers.find(({ slug }) => slug === searchParams.tier)!
       : tiers[0]

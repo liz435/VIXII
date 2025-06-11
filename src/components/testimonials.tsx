@@ -20,45 +20,33 @@ import { Heading, Subheading } from './text'
 const testimonials = [
   {
     img: '/testimonials/tina-yards.jpg',
-    name: 'Tina Yards',
-    title: 'VP of Sales, Protocol',
+    name: 'Crypto Whale 07',
+    title: 'Individual Investor',
     quote:
-      'Thanks to Radiant, we’re finding new leads that we never would have found with legal methods.',
+      'For the first time, I’ve experienced institutional-grade trading and security as an individual. Theirstrategies deliver stable performance and have become a key part of my long-term allocation.',
   },
   {
     img: '/testimonials/conor-neville.jpg',
-    name: 'Conor Neville',
-    title: 'Head of Customer Success, TaxPal',
+    name: 'Sophia.  P',
+    title: 'BiananceExchange.BDTeam',
     quote:
-      'Radiant made undercutting all of our competitors an absolute breeze.',
+      '“VIXII’s team has a deep understanding of on-chain trade mechanics. Strategy execution is precise and efficient—making them a trusted quant partner in DeFi.',
   },
   {
     img: '/testimonials/amy-chase.jpg',
-    name: 'Amy Chase',
-    title: 'Head of GTM, Pocket',
+    name: 'NovaDAOTreasury',
+    title: 'DAO Representative',
     quote:
-      'We closed a deal in literally a few minutes because we knew their exact budget.',
+      'Our DAO treasury has achieved consistent returns throughRadiant. The transparency and built-in risk control are top-notch—ideal for decentralized fund growth.',
   },
   {
     img: '/testimonials/veronica-winton.jpg',
-    name: 'Veronica Winton',
-    title: 'CSO, Planeteria',
+    name: 'Ryan. Cheng',
+    title: 'Manufacturing Founder',
     quote:
-      'We’ve managed to put two of our main competitors out of business in 6 months.',
+      'VIXII’s strategies arerigorous.It performs exceptionally well even in volatile market conditions. We have made it a core low-correlation alpha source in our portfolio.',
   },
-  {
-    img: '/testimonials/dillon-lenora.jpg',
-    name: 'Dillon Lenora',
-    title: 'VP of Sales, Detax',
-    quote: 'I was able to replace 80% of my team with RadiantAI bots.',
-  },
-  {
-    img: '/testimonials/harriet-arron.jpg',
-    name: 'Harriet Arron',
-    title: 'Account Manager, Commit',
-    quote:
-      'I’ve smashed all my targets without having to speak to a lead in months.',
-  },
+
 ]
 
 function TestimonialCard({
