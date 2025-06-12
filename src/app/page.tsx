@@ -18,6 +18,8 @@ import { ChevronRightIcon } from '@heroicons/react/16/solid'
 import type { Metadata } from 'next'
 import ReturnChart from '@/components/return-chart'
 import { Suspense } from 'react'
+import { AnimatedNumber } from '@/components/animated-number'
+import { FeatureSectionG } from "@/components/feature-section-gallery"
 import "./global.css"
 
 export const metadata: Metadata = {
@@ -37,7 +39,7 @@ function Hero() {
               href="/blog/radiant-raises-100m-series-a-from-tailwind-ventures"
               className="flex items-center gap-1 rounded-full bg-fuchsia-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-[hover]:bg-fuchsia-950/30"
             >
-              Radiant raises $100M Series A from Tailwind Ventures
+             Assets Under Management (AUM) reached RMB 1.9 billion
               <ChevronRightIcon className="size-4" />
             </Link>
           }
@@ -141,9 +143,9 @@ function BentoSection() {
           className="lg:col-span-2"
         />
         <BentoCard
-          eyebrow="Scale"
+          eyebrow="remote"
           title="Globally"
-          description="VIXII helps you sell in locations currently under international embargo."
+          description="VIXII can bring you steady return no matter where you are."
           graphic={<Map />}
           className="max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl"
         />
@@ -214,12 +216,57 @@ export default function Home() {
       <main>
         <Container className="mt-10">
           <LogoCloud />
+
     
         </Container>
         <div className="bg-gradient-to-b from-white from-50% to-gray-100 py-32">
     
                
-          <FeatureSection />
+          <FeatureSectionG />
+
+
+
+                  <div className="overflow-hidden">
+      <Container className="pb-24">
+        <Heading as="h2" className="max-w-3xl">
+          A Showcase of the number.
+        </Heading>
+
+                  <div className='mt-16'>
+                  <div className="max-lg:mt-16 lg:col-span-1">
+                    <Subheading>The Numbers</Subheading>
+                    <hr className="mt-6 border-t border-gray-200" />
+                    <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+                      <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
+                        <dt className="text-sm/6 text-gray-600">Raised</dt>
+                        <dd className="order-first text-6xl font-medium tracking-tight">
+                          $<AnimatedNumber start={100} end={150} />M
+                        </dd>
+                      </div>
+                      <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
+                        <dt className="text-sm/6 text-gray-600">Companies</dt>
+                        <dd className="order-first text-6xl font-medium tracking-tight">
+                          <AnimatedNumber start={15} end={30} />K
+                        </dd>
+                      </div>
+                      <div className="flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-gray-200 max-sm:pb-4">
+                        <dt className="text-sm/6 text-gray-600">Deals Closed</dt>
+                        <dd className="order-first text-6xl font-medium tracking-tight">
+                          <AnimatedNumber start={0.9} end={1.5} decimals={1} />M
+                        </dd>
+                      </div>
+                      <div className="flex flex-col gap-y-2">
+                        <dt className="text-sm/6 text-gray-600">Leads Generated</dt>
+                        <dd className="order-first text-6xl font-medium tracking-tight">
+                          <AnimatedNumber start={150} end={200} />M
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                  </div>
+
+      </Container>
+    </div>
           <BentoSection />
 
         </div>

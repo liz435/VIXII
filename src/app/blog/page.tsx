@@ -25,11 +25,7 @@ function Header() {
         <div className="max-w-lg">
           <h2 className="text-2xl font-medium tracking-tight">Our mission</h2>
           <p className="mt-6 text-sm/6 text-gray-600">
-            At Radiant, we are dedicated to transforming the way revenue
-            organizations source and close deals. Our mission is to provide our
-            customers with an unfair advantage over both their competitors and
-            potential customers through insight and analysis. We’ll stop at
-            nothing to get you the data you need to close a deal.
+           Today, the firm empowers investment strategies through advanced quantitative research and data-driven decision-making. With over RMB 2.8 billion in assets under management and a team of 40+ professionals, it delivers consistent, top-tier performance across CTA, equity alpha, and macro quantitative strategies—trusted by leading institutions to navigate markets with precision and insight.
           </p>
           <p className="mt-8 text-sm/6 text-gray-600">
             We’re customer-obsessed — putting the time in to build a detailed
@@ -72,36 +68,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className="max-lg:mt-16 lg:col-span-1">
-          <Subheading>The Numbers</Subheading>
-          <hr className="mt-6 border-t border-gray-200" />
-          <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-            <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-              <dt className="text-sm/6 text-gray-600">Raised</dt>
-              <dd className="order-first text-6xl font-medium tracking-tight">
-                $<AnimatedNumber start={100} end={150} />M
-              </dd>
-            </div>
-            <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-              <dt className="text-sm/6 text-gray-600">Companies</dt>
-              <dd className="order-first text-6xl font-medium tracking-tight">
-                <AnimatedNumber start={15} end={30} />K
-              </dd>
-            </div>
-            <div className="flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-gray-200 max-sm:pb-4">
-              <dt className="text-sm/6 text-gray-600">Deals Closed</dt>
-              <dd className="order-first text-6xl font-medium tracking-tight">
-                <AnimatedNumber start={0.9} end={1.5} decimals={1} />M
-              </dd>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <dt className="text-sm/6 text-gray-600">Leads Generated</dt>
-              <dd className="order-first text-6xl font-medium tracking-tight">
-                <AnimatedNumber start={150} end={200} />M
-              </dd>
-            </div>
-          </dl>
-        </div>
+
       </section>
     </Container>
   )

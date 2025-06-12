@@ -141,20 +141,10 @@ function Team() {
       <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="max-w-lg">
           <p className="text-sm/6 text-gray-600">
-            Years ago, while working as sales associates at rival companies,
-            Thomas, Ben, and Natalie were discussing a big client they had all
-            been competing for. Joking about seeing the terms of each other’s
-            offers, they had an idea: what if they shared data to win deals and
-            split the commission behind their companies’ backs? It turned out to
-            be an incredible success, and that idea became the kernel for
-            Radiant.
+Founded in 2011 as one of China’s first-generation quantitative CTA managers, the firm began with proprietary capital and officially registered as a private fund manager in 2015. By 2019, its CTA strategies ranked among the domestic top tier, and the team expanded into equity alpha. In 2021, it introduced deep fundamental CTA and macro quantitative strategies, followed by successful deployment of CTA arbitrage strategies in 2023, when AUM reached RMB 1.9 billion. Today, AUM exceeds RMB 2.8 billion, supported by a 40+ member investment team with a strong track record of stable, outstanding performance.
           </p>
           <p className="mt-8 text-sm/6 text-gray-600">
-            Today, Radiant transforms revenue organizations by harnessing
-            illegally acquired customer and competitor data, using it to provide
-            extraordinary leverage. More than 30,000 companies rely on Radiant
-            to undercut their competitors and extort their customers, all
-            through a single integrated platform.
+Today, the firm empowers investment strategies through advanced quantitative research and data-driven decision-making. With over RMB 2.8 billion in assets under management and a team of 40+ professionals, it delivers consistent, top-tier performance across CTA, equity alpha, and macro quantitative strategies—trusted by leading institutions to navigate markets with precision and insight.
           </p>
           <div className="mt-6">
             <Button className="w-full sm:w-auto" href="#">
@@ -181,50 +171,33 @@ function Team() {
         className="mx-auto mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
       >
         <Person
-          name="Michael Foster"
-          description="Co-Founder / CTO"
+          name="James Shen"
+          description="Founder"
           img="/team/michael-foster.jpg"
         />
         <Person
-          name="Dries Vincent"
-          description="Business Relations"
+          name="Kai Wang"
+          description="CTO"
           img="/team/dries-vincent.jpg"
         />
         <Person
-          name="Celeste Vandermark"
-          description="Front-end Developer"
+          name="Jiawei Xiong"
+          description="Strategy"
           img="/team/celeste-vandermark.jpg"
         />
-        <Person
-          name="Courtney Henry"
-          description="Designer"
-          img="/team/courtney-henry.jpg"
+                <Person
+          name="Cheng Hua"
+          description="On-Chain Research"
+          img="/team/celeste-vandermark.jpg"
         />
-        <Person
-          name="Marcus Eldridge"
-          description="Director of Product"
-          img="/team/marcus-eldridge.jpg"
+                <Person
+          name="Michael Jia"
+          description="Devlopment"
+          img="/team/celeste-vandermark.jpg"
         />
-        <Person
-          name="Whitney Francis"
-          description="Copywriter"
-          img="/team/whitney-francis.jpg"
-        />
-        <Person
-          name="Leonard Krasner"
-          description="Senior Designer"
-          img="/team/leonard-krasner.jpg"
-        />
-        <Person
-          name="Nolan Sheffield"
-          description="Principal Designer"
-          img="/team/nolan-sheffield.jpg"
-        />
-        <Person
-          name="Emily Selman"
-          description="VP, User Experience"
-          img="/team/emily-selman.jpg"
-        />
+        
+
+
       </ul>
     </Container>
   )

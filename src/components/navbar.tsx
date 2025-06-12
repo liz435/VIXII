@@ -19,20 +19,20 @@ const links = [
 
 const productCategories = [
   {
-    href: "/products/analytics",
-    label: "Analytics & Insights",
+    href: "/pricing?tier=starter",
+    label: "Strategy 1",
     description: "Track performance and gain valuable insights",
     icon: BarChart3,
   },
   {
-    href: "/products/marketing",
-    label: "Marketing Tools",
+    href: "/pricing?tier=growth",
+    label: "Strategy 2",
     description: "Grow your audience and boost engagement",
     icon: Megaphone,
   },
   {
-    href: "/products/support",
-    label: "Customer Support",
+    href: "/pricing?tier=enterprise",
+    label: "Strategy 3",
     description: "Deliver exceptional customer experiences",
     icon: MessageSquare,
   },
