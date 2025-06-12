@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Container } from "@/components/container"
@@ -68,29 +68,23 @@ function GalleryControls({
   totalImages,
   onPrevious,
   onNext,
+  onGoToIndex,
 }: {
   currentIndex: number
   totalImages: number
   onPrevious: () => void
   onNext: () => void
+  onGoToIndex: (index: number) => void
 }) {
   return (
     <div className="flex items-center justify-center gap-4 mt-8">
-      <button
-        onClick={onPrevious}
-        className="flex items-center justify-center w-12 h-12 rounded-full bg-black/10 backdrop-blur-sm border border-black/20 hover:bg-black/20 transition-colors"
-        aria-label="Previous image"
-      >
-        <ChevronLeft className="w-6 h-6 text-black" />
-      </button>
+
 
       <div className="flex gap-2">
         {Array.from({ length: totalImages }).map((_, index) => (
           <button
             key={index}
-            onClick={() => {
-              /* We'll handle this in the parent component */
-            }}
+            onClick={() => onGoToIndex(index)}
             className={`w-2 h-2 rounded-full transition-colors ${
               index === currentIndex ? "bg-black" : "bg-black/30 hover:bg-black/50"
             }`}
@@ -99,20 +93,26 @@ function GalleryControls({
         ))}
       </div>
 
-      <button
-        onClick={onNext}
-        className="flex items-center justify-center w-12 h-12 rounded-full bg-black/10 backdrop-blur-sm border border-black/20 hover:bg-black/20 transition-colors"
-        aria-label="Next image"
-      >
-        <ChevronRight className="w-6 h-6 text-black" />
-      </button>
+
     </div>
   )
 }
 
 export function FeatureSectionG() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
   const currentScreenshot = screenshots[currentIndex]
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (isHovered) return // Don't auto-scroll when user is hovering
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1))
+    }, 3000) // Change image every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [isHovered])
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1))
@@ -127,47 +127,49 @@ export function FeatureSectionG() {
   }
 
   return (
-    <div className="overflow-hidden  bg-white">
+    <div className="overflow-hidden bg-white">
       <Container className="pb-24 pt-16">
         <div className="text-center">
           <Heading as="h2" className="max-w-3xl mx-auto text-black">
             A snapshot of your entire sales pipeline.
           </Heading>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="mt-16"
-            >
-              <Screenshot
-                width={1216}
-                height={768}
-                src={currentScreenshot.src}
-                alt={currentScreenshot.alt}
-                className="h-[36rem] sm:h-auto sm:w-[76rem] mx-auto"
-              />
-
+          <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="mt-16">
+            <AnimatePresence mode="wait">
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="mt-6"
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
               >
-                <h3 className="text-xl font-semibold text-black">{currentScreenshot.title}</h3>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
+                <Screenshot
+                  width={1216}
+                  height={768}
+                  src={currentScreenshot.src}
+                  alt={currentScreenshot.alt}
+                  className="h-[36rem] sm:h-auto sm:w-[76rem] mx-auto"
+                />
 
-          <GalleryControls
-            currentIndex={currentIndex}
-            totalImages={screenshots.length}
-            onPrevious={goToPrevious}
-            onNext={goToNext}
-          />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-6"
+                >
+                  <h3 className="text-xl font-semibold text-black">{currentScreenshot.title}</h3>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+
+            <GalleryControls
+              currentIndex={currentIndex}
+              totalImages={screenshots.length}
+              onPrevious={goToPrevious}
+              onNext={goToNext}
+              onGoToIndex={goToIndex}
+            />
+          </div>
         </div>
       </Container>
     </div>
