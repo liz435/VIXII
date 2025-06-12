@@ -20,31 +20,37 @@ import { Heading, Subheading } from './text'
 const testimonials = [
   {
     img: '/testimonials/tina-yards.jpg',
-    name: 'Crypto Whale 07',
-    title: 'Individual Investor',
+    name: 'James Shen',
+    title: ' Co-Founder, Head of Research & Strategy Deployment',
     quote:
-      'For the first time, I’ve experienced institutional-grade trading and security as an individual. Theirstrategies deliver stable performance and have become a key part of my long-term allocation.',
-  },
+      "Veteran quantitative trader since 2009 with a background as Technology Director and VP at a foreign bank. Co-founded one of China's earliest quant funds in 2011. Leads research direction and live trading deployment, with a decade of experience in crypto." },
   {
     img: '/testimonials/conor-neville.jpg',
-    name: 'Sophia.  P',
-    title: 'BiananceExchange.BDTeam',
+    name: 'Kai Wang',
+    title: 'Co-Founder, Strategic Lead',
     quote:
-      '“VIXII’s team has a deep understanding of on-chain trade mechanics. Strategy execution is precise and efficient—making them a trusted quant partner in DeFi.',
+      'Early algorithmic trader in China since 2007 with an MBA from CEIBS. Extensive background in finance, consistently delivering compounding returns. Focuses on integrating technology and structured knowledge into investment strategy.',
   },
   {
     img: '/testimonials/amy-chase.jpg',
-    name: 'NovaDAOTreasury',
-    title: 'DAO Representative',
+    name: 'Jiawei Xiong',
+    title: 'Quant Researcher & Blockchain Strategy Developer',
     quote:
-      'Our DAO treasury has achieved consistent returns throughRadiant. The transparency and built-in risk control are top-notch—ideal for decentralized fund growth.',
+      'Expert in signal processing and probability models. Developed a high-frequency CTA strategy with 40% annualized returns. Leads blockchain hedging and strategy adaptation for optimal performance.',
   },
   {
     img: '/testimonials/veronica-winton.jpg',
-    name: 'Ryan. Cheng',
-    title: 'Manufacturing Founder',
+    name: 'Cheng Hua',
+    title: 'Quant Researcher & Alpha Factor Developer',
     quote:
-      'VIXII’s strategies arerigorous.It performs exceptionally well even in volatile market conditions. We have made it a core low-correlation alpha source in our portfolio.',
+      'Physics background with strong economics training. Specializes in time series analysis and market microstructure. Leads CTA automation and stock alpha factor modeling, including high-frequency data research.',
+  },
+    {
+    img: '/testimonials/veronica-winton.jpg',
+    name: 'Michael Jia',
+    title: 'Senior Software Engineer & On-chain Systems Developer',
+    quote:
+      'Experienced engineer with a background in large-scale software and crypto mining infrastructure. Focuses on deploying on-chain strategies, vault operations, and UI/UX development.',
   },
 
 ]
@@ -117,7 +123,7 @@ function TestimonialCard({
       />
       <figure className="relative p-10">
         <blockquote>
-          <p className="relative text-xl/7 text-white">
+          <p className="relative text-md text-white">
             <span aria-hidden="true" className="absolute -translate-x-full">
               “
             </span>
@@ -143,10 +149,7 @@ function TestimonialCard({
 function CallToAction() {
   return (
     <div>
-      <p className="max-w-sm text-sm/6 text-gray-600">
-        Join the best sellers in the business and start using Radiant to hit
-        your targets today.
-      </p>
+
       <div className="mt-2">
         <Link
           href="#"
@@ -180,9 +183,9 @@ export function Testimonials() {
     <div className="overflow-hidden py-32">
       <Container>
         <div ref={setReferenceWindowRef}>
-          <Subheading>What everyone is saying</Subheading>
+          <Subheading>Our wonderful team</Subheading>
           <Heading as="h3" className="mt-2">
-            Trusted by professionals.
+            We are here to help
           </Heading>
         </div>
       </Container>

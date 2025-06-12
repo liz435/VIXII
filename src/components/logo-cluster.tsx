@@ -126,7 +126,7 @@ export function LogoCluster() {
           hover={{ x: -2, y: -5, rotate: -6, delay: 0.15 }}
         />
         <Logo
-          src="/logo-cluster/upwork.svg"
+          src="/logo-cluster/ethereum-eth-logo.svg"
           left={36}
           top={56}
           hover={{ x: -4, y: -5, rotate: -6, delay: 0.35 }}

@@ -22,6 +22,7 @@ import { AnimatedNumber } from '@/components/animated-number'
 import { FeatureSectionG } from "@/components/feature-section-gallery"
 import "./global.css"
 import { Merriweather, DM_Sans } from "next/font/google"
+import DefiFlowDiagram from "@/components/defi-flow-diagram"
 
 export const metadata: Metadata = {
   description:
@@ -51,7 +52,7 @@ function Hero() {
               href="/blog/radiant-raises-100m-series-a-from-tailwind-ventures"
               className="flex items-center gap-1 rounded-full bg-fuchsia-950/35 px-3 py-0.5 text-sm/6 font-medium text-white data-[hover]:bg-fuchsia-950/30"
             >
-             Assets Under Management (AUM) reached RMB 1.9 billion
+             Assets Under Management (AUM) reached RMB 3.8 billion
               <ChevronRightIcon className="size-4" />
             </Link>
           }
@@ -251,27 +252,27 @@ export default function Home() {
                     <hr className="mt-6 border-t border-gray-200" />
                     <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                       <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-                        <dt className="text-sm/6 text-gray-600">Raised</dt>
+                        <dt className="text-sm/6 text-gray-600">Asset Under Management</dt>
                         <dd className="order-first text-6xl font-medium tracking-tight">
-                          $<AnimatedNumber start={100} end={150} />M
+                          $<AnimatedNumber start={100} end={322} />M
                         </dd>
                       </div>
                       <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-                        <dt className="text-sm/6 text-gray-600">Companies</dt>
+                        <dt className="text-sm/6 text-gray-600">APY</dt>
                         <dd className="order-first text-6xl font-medium tracking-tight">
-                          <AnimatedNumber start={15} end={30} />K
+                          <AnimatedNumber start={15} end={40} />%
                         </dd>
                       </div>
                       <div className="flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-gray-200 max-sm:pb-4">
-                        <dt className="text-sm/6 text-gray-600">Deals Closed</dt>
+                        <dt className="text-sm/6 text-gray-600">Team Members</dt>
                         <dd className="order-first text-6xl font-medium tracking-tight">
-                          <AnimatedNumber start={0.9} end={1.5} decimals={1} />M
+                          <AnimatedNumber start={11} end={55}  />
                         </dd>
                       </div>
                       <div className="flex flex-col gap-y-2">
-                        <dt className="text-sm/6 text-gray-600">Leads Generated</dt>
+                        <dt className="text-sm/6 text-gray-600">Master Degree</dt>
                         <dd className="order-first text-6xl font-medium tracking-tight">
-                          <AnimatedNumber start={150} end={200} />M
+                          <AnimatedNumber start={0} end={100} />%
                         </dd>
                       </div>
                     </dl>
@@ -282,9 +283,11 @@ export default function Home() {
     </div>
           <BentoSection />
 
+
         </div>
         {/* <DarkBentoSection /> */}
       </main>
+
       <Testimonials />
       <Footer />
     </div>

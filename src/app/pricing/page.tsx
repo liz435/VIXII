@@ -6,18 +6,20 @@ import { Gradient } from "@/components/gradient"
 import { LogoCloud } from "@/components/logo-cloud"
 import { Navbar } from "@/components/navbar"
 import { Heading, Lead, Subheading } from "@/components/text"
+import { StatsCard } from "@/components/return-chart"
+import DefiFlowDiagram from "@/components/defi-flow-diagram"
+import ReturnChart from "@/components/pricing-chart"
 
 const tiers = [
   {
     name: "Strategy 1" as const,
     slug: "starter",
-    description: "Everything you need to start selling.",
-    priceMonthly: 99,
+    description: "You'll earn",
+    priceMonthly: 1.8,
     href: "#",
     highlights: [
-      { description: "Up to 3 team members" },
-      { description: "Up to 5 deal progress boards" },
-      { description: "Source leads from select platforms" },
+      { description: "Make the fun publicly available on Drift" },
+      { description: "Everything you need to start" },
       { description: "RadiantAI integrations", disabled: true },
       { description: "Competitor analysis", disabled: true },
     ],
@@ -40,7 +42,7 @@ const tiers = [
     name: "Strategy 2" as const,
     slug: "growth",
     description: "All the extras for your growing team.",
-    priceMonthly: 149,
+    priceMonthly: 3,
     href: "#",
     highlights: [
       { description: "Up to 10 team members" },
@@ -68,7 +70,7 @@ const tiers = [
     name: "Strategy 3" as const,
     slug: "enterprise",
     description: "Added flexibility to close deals at scale.",
-    priceMonthly: 299,
+    priceMonthly: 6,
     href: "#",
     highlights: [
       { description: "Unlimited active team members" },
@@ -116,6 +118,8 @@ function PricingCards() {
             <PricingCard key={tierIndex} tier={tier} />
           ))}
         </div>
+        <div className="p-16"></div>
+        <StatsCard/>
         <LogoCloud className="mt-24" />
       </Container>
     </div>
@@ -127,31 +131,47 @@ function PricingCard({ tier }: { tier: (typeof tiers)[number] }) {
     <div className="-m-2 grid grid-cols-1 rounded-4xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-black/5 max-lg:mx-auto max-lg:w-full max-lg:max-w-md">
       <div className="grid grid-cols-1 rounded-4xl p-2 shadow-md shadow-black/5">
         <div className="rounded-3xl bg-white p-10 pb-9 shadow-2xl ring-1 ring-black/5">
-          <Subheading>{tier.name}</Subheading>
-          <p className="mt-2 text-sm/6 text-gray-950/75">{tier.description}</p>
-          <div className="mt-8 flex items-center gap-4">
-            <div className="text-5xl font-medium text-gray-950">${tier.priceMonthly}</div>
-            <div className="text-sm/5 text-gray-950/75">
-              <p>USD</p>
-              <p>per month</p>
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left: Text Content */}
+            <div className="flex-1">
+              <Subheading>{tier.name}</Subheading>
+              <p className="mt-2 text-xl/6 text-gray-950/75">{tier.description}</p>
+              <div className="mt-8 flex items-center gap-4">
+                <div className="text-5xl font-medium text-gray-950">{tier.priceMonthly}%</div>
+                <div className="text-sm/5 text-gray-950/75">
+                  <p>return</p>
+                  <p>per month</p>
+                </div>
+              </div>
+              <div className="mt-8">
+                <Button href={tier.href}>Start a free trial</Button>
+              </div>
+              <div className="mt-8">
+                <h3 className="text-sm/6 font-medium text-gray-950">Start earning now with:</h3>
+                <ul className="mt-3 space-y-3">
+                  {tier.highlights.map((props, featureIndex) => (
+                    <FeatureItem key={featureIndex} {...props} />
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-          <div className="mt-8">
-            <Button href={tier.href}>Start a free trial</Button>
-          </div>
-          <div className="mt-8">
-            <h3 className="text-sm/6 font-medium text-gray-950">Start selling with:</h3>
-            <ul className="mt-3 space-y-3">
-              {tier.highlights.map((props, featureIndex) => (
-                <FeatureItem key={featureIndex} {...props} />
-              ))}
-            </ul>
+
+            {/* Right: Graph */}
+            <div className="flex-1">
+              <ReturnChart
+                monthlyReturnRate={tier.priceMonthly}
+                title="Higher Return Comparison"
+                description="Comparing 2.5% monthly returns against US Treasury yields"
+                startDate={new Date(2024, 0, 1)}
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
+
 
 function FeatureItem({
   description,
@@ -261,6 +281,11 @@ export default async function Pricing({
       </Container>
       <Header />
       <PricingCards />
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-full max-w-4xl">
+          <DefiFlowDiagram />
+        </div>
+      </div>
       {/* <PricingTable selectedTier={tier} /> */}
       <FrequentlyAskedQuestions />
       <Footer />

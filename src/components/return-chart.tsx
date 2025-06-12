@@ -3,23 +3,47 @@
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
 import { ChevronDown, TrendingUp, Activity, Zap } from "lucide-react"
 import { useState } from "react"
-
 const data = [
+  // Original data (2020-2023)
   { date: "2020/1/1", blue: 1.0, orange: null, gray: null, timestamp: "Jan 2020" },
   { date: "2020/4/1", blue: 1.05, orange: null, gray: null, timestamp: "Apr 2020" },
   { date: "2020/7/1", blue: 1.1, orange: null, gray: null, timestamp: "Jul 2020" },
-  { date: "2020/10/1", blue: 1.15, orange: null, gray: null, timestamp: "Oct 2020" },
+  { date: "2020/10/1", blue: 1.19, orange: null, gray: null, timestamp: "Oct 2020" },
   { date: "2021/1/1", blue: 1.2, orange: null, gray: null, timestamp: "Jan 2021" },
-  { date: "2021/4/1", blue: 1.25, orange: 1.2, gray: 2.8, timestamp: "Apr 2021" },
-  { date: "2021/7/1", blue: 1.3, orange: 1.35, gray: 3.2, timestamp: "Jul 2021" },
-  { date: "2021/10/1", blue: 1.35, orange: 1.45, gray: 3.5, timestamp: "Oct 2021" },
-  { date: "2022/1/1", blue: 1.4, orange: 1.55, gray: 3.8, timestamp: "Jan 2022" },
-  { date: "2022/4/1", blue: 1.45, orange: 1.65, gray: 4.2, timestamp: "Apr 2022" },
-  { date: "2022/7/1", blue: 1.5, orange: 1.75, gray: 4.5, timestamp: "Jul 2022" },
-  { date: "2022/10/1", blue: 1.55, orange: 1.8, gray: 4.7, timestamp: "Oct 2022" },
-  { date: "2023/1/1", blue: 1.6, orange: 1.85, gray: 4.8, timestamp: "Jan 2023" },
-  { date: "2023/3/1", blue: 1.65, orange: 1.75, gray: 4.0, timestamp: "Mar 2023" },
-]
+  { date: "2021/4/1", blue: 1.25, orange: 1.2, gray: null, timestamp: "Apr 2021" },
+  { date: "2021/7/1", blue: 1.3, orange: 1.35, gray: null, timestamp: "Jul 2021" },
+  { date: "2021/10/1", blue: 1.35, orange: 1.45, gray: null, timestamp: "Oct 2021" },
+  { date: "2022/1/1", blue: 1.4, orange: 1.55, gray: null, timestamp: "Jan 2022" },
+  { date: "2022/4/1", blue: 1.45, orange: 1.65, gray: null, timestamp: "Apr 2022" },
+  { date: "2022/7/1", blue: 1.5, orange: 1.75, gray: null, timestamp: "Jul 2022" },
+  { date: "2022/10/1", blue: 1.55, orange: 1.8, gray: null, timestamp: "Oct 2022" },
+  { date: "2023/1/1", blue: 1.6, orange: 1.85, gray: null, timestamp: "Jan 2023" },
+  { date: "2023/3/1", blue: 1.65, orange: 1.75, gray: null, timestamp: "Mar 2023" },
+  
+  // Updated readings from chart (2023-2025)
+  { date: "2023/6/1", blue: 1.70, orange: 1.80, gray: null, timestamp: "Jun 2023" },
+  { date: "2023/9/1", blue: 1.75, orange: 1.85, gray: null, timestamp: "Sep 2023" },
+  { date: "2023/12/1", blue: 1.78, orange: 1.88, gray: null, timestamp: "Dec 2023" },
+  
+  { date: "2024/1/1", blue: 1.80, orange: 1.90, gray: null, timestamp: "Jan 2024" },
+  { date: "2024/2/1", blue: 1.82, orange: 1.92, gray: null, timestamp: "Feb 2024" },
+  { date: "2024/3/1", blue: 1.84, orange: 1.94, gray: null, timestamp: "Mar 2024" },
+  { date: "2024/4/1", blue: 1.86, orange: 1.96, gray: null, timestamp: "Apr 2024" },
+  { date: "2024/5/1", blue: 1.88, orange: 1.98, gray: null, timestamp: "May 2024" },
+  { date: "2024/6/1", blue: 1.90, orange: 2.00, gray: null, timestamp: "Jun 2024" },
+  { date: "2024/7/1", blue: 1.92, orange: 2.02, gray: null, timestamp: "Jul 2024" },
+  { date: "2024/8/1", blue: 1.94, orange: 2.04, gray: null, timestamp: "Aug 2024" },
+  { date: "2024/9/1", blue: 1.96, orange: 2.06, gray: null, timestamp: "Sep 2024" },
+  { date: "2024/10/1", blue: 1.98, orange: 2.08, gray: null, timestamp: "Oct 2024" },
+  { date: "2024/11/1", blue: 2.00, orange: 2.10, gray: null, timestamp: "Nov 2024" },
+  { date: "2024/12/1", blue: 2.02, orange: 2.12, gray: null, timestamp: "Dec 2024" },
+  
+  { date: "2025/1/1", blue: 2.04, orange: 2.14, gray: null, timestamp: "Jan 2025" },
+  { date: "2025/2/1", blue: 2.06, orange: 2.16, gray: null, timestamp: "Feb 2025" },
+  { date: "2025/3/1", blue: 2.08, orange: 2.18, gray: null, timestamp: "Mar 2025" },
+  { date: "2025/4/1", blue: 2.10, orange: 2.20, gray: null, timestamp: "Apr 2025" },
+  { date: "2025/5/1", blue: 2.12, orange: 2.22, gray: null, timestamp: "May 2025" }
+];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -44,7 +68,6 @@ const CustomLegend = ({ payload }: any) => {
   const legendItems = [
     { name: "Primary Asset", color: "#00d4ff", icon: TrendingUp },
     { name: "Secondary Asset", color: "#ff6b35", icon: Activity },
-    { name: "Volatility Index", color: "#a855f7", icon: Zap },
   ]
 
   return (
@@ -67,51 +90,17 @@ export default function ReturnChart() {
   const [selectedMetric, setSelectedMetric] = useState("all")
 
   return (
-    <div className="min-h-screen rounded-3xl bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="rounded-3xl bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 p-6">
+     
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r text-white bg-clip-text text-transparent mb-2">
-            DeFi Analytics Dashboard
+           Neutral Hedged JLP Strategy
           </h1>
-          <p className="text-gray-700">Real-time market intelligence & volatility tracking</p>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-gray-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-4 hover:border-cyan-400/50 transition-all duration-300">
-            <div className="flex items-center gap-3">
-              <TrendingUp className="w-8 h-8 text-cyan-400" />
-              <div>
-                <p className="text-gray-400 text-sm">Primary Asset</p>
-                <p className="text-2xl font-bold text-cyan-400">1.65</p>
-                <p className="text-green-400 text-sm">+65% YTD</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-800/50 backdrop-blur-sm border border-orange-500/30 rounded-xl p-4 hover:border-orange-400/50 transition-all duration-300">
-            <div className="flex items-center gap-3">
-              <Activity className="w-8 h-8 text-orange-400" />
-              <div>
-                <p className="text-gray-400 text-sm">Secondary Asset</p>
-                <p className="text-2xl font-bold text-orange-400">1.75</p>
-                <p className="text-red-400 text-sm">-5.4% 30D</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-800/50 backdrop-blur-sm border border-purple-500/30 rounded-xl p-4 hover:border-purple-400/50 transition-all duration-300">
-            <div className="flex items-center gap-3">
-              <Zap className="w-8 h-8 text-purple-400" />
-              <div>
-                <p className="text-gray-400 text-sm">Volatility Index</p>
-                <p className="text-2xl font-bold text-purple-400">4.0</p>
-                <p className="text-yellow-400 text-sm">High Risk</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Stats Cards */}                                 
+ 
 
         {/* Chart Container */}
         <div className="bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 shadow-2xl">
@@ -210,11 +199,7 @@ export default function ReturnChart() {
             </ResponsiveContainer>
 
             {/* Floating Action Button */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-              {/* <button className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 group">
-                <ChevronDown className="w-5 h-5 text-white group-hover:animate-bounce" />
-              </button> */}
-            </div>
+
           </div>
         </div>
 
@@ -235,6 +220,60 @@ export default function ReturnChart() {
           </button>
         </div> */}
       </div>
-    </div>
+
+  )
+}
+
+
+export function StatsCard(){
+  return(
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+
+            <div className="-m-2 grid grid-cols-1 rounded-4xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-black/5 max-lg:mx-auto max-lg:w-full max-lg:max-w-md">
+          <div className="grid grid-cols-1 rounded-4xl p-2 shadow-md shadow-black/5">
+          <div className="rounded-3xl bg-white p-10 pb-9 shadow-2xl ring-1 ring-black/5">
+            <div className="flex items-center gap-3">
+              <TrendingUp className="w-8 h-8 text-green-400" />
+              <div>
+           
+                <p className="text-4xl font-bold text-green-400">40.5%</p>
+                  <p className="text-black text-sm">Annualized Return in 2024</p>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+              <div className="-m-2 grid grid-cols-1 rounded-4xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-black/5 max-lg:mx-auto max-lg:w-full max-lg:max-w-md">
+          <div className="grid grid-cols-1 rounded-4xl p-2 shadow-md shadow-black/5">
+          <div className="rounded-3xl bg-white p-10 pb-9 shadow-2xl ring-1 ring-black/5">
+            <div className="flex items-center gap-3">
+              <Activity className="w-8 h-8 text-orange-600" />
+              <div>
+           
+                <p className="text-4xl font-bold text-red-400">-1.5%</p>
+              <p className="text-gray-400 text-sm">Maxdrawdown</p>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+                        <div className="-m-2 grid grid-cols-1 rounded-4xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-black/5 max-lg:mx-auto max-lg:w-full max-lg:max-w-md">
+          <div className="grid grid-cols-1 rounded-4xl p-2 shadow-md shadow-black/5">
+          <div className="rounded-3xl bg-white p-10 pb-9 shadow-2xl ring-1 ring-black/5">
+            <div className="flex items-center gap-3">
+              <Zap className="w-8 h-8 text-purple-400" />
+              <div>
+       
+                <p className="text-4xl font-bold text-purple-600">+14.07%</p>
+                <p className="text-gray-400 text-sm">Return Year-to-date(25)</p>
+    
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+      </div>
   )
 }

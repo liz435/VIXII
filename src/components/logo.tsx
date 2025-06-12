@@ -10,11 +10,17 @@ export function Logo({ className }: { className?: string }) {
   }
 
   return (
+    <>
+    <span className="flex items-center gap-2">
       <img
-        alt="SavvyCal"
+        alt="XIVII"
         src="/logo/VIXII.svg"
-        className="h-9 max-sm:mx-auto sm:h-8 lg:h-12"
+        className="h-9 max-sm:mx-auto sm:h-8 lg:h-10"
       />
+      
+     <h1 className="text-3xl ">XIVII</h1>
+      </span>
+      </>
   )
 }
 

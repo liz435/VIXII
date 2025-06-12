@@ -141,8 +141,8 @@ export function FeatureSectionG() {
   return (
     <div className="overflow-hidden bg-white">
       <Container className="pb-24 pt-16">
-        <div className="text-center">
-          <Heading as="h2" className="max-w-3xl mx-auto text-black">
+        <div className="">
+          <Heading as="h2" className="max-w-3xl text-black">
             A snapshot of your entire sales pipeline.
           </Heading>
 
@@ -169,7 +169,7 @@ export function FeatureSectionG() {
                   transition={{ delay: 0.2 }}
                   className="mt-6"
                 >
-                  <h3 className="text-xl font-semibold text-black">{currentScreenshot.title}</h3>
+                  <h3 className="text-xl font-semibold text-center text-black">{currentScreenshot.title}</h3>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
