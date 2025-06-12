@@ -21,17 +21,29 @@ import { Suspense } from 'react'
 import { AnimatedNumber } from '@/components/animated-number'
 import { FeatureSectionG } from "@/components/feature-section-gallery"
 import "./global.css"
+import { Merriweather, DM_Sans } from "next/font/google"
 
 export const metadata: Metadata = {
   description:
     'Radiant helps you sell more by revealing sensitive information about your customers.',
 }
 
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: [ "400",],
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+})
+
 function Hero() {
   return (
     <div className="relative">
       
-      <Gradient className="absolute inset-2 bottom-0 rounded-4xl ring-1 ring-inset ring-black/5" />
+  <Gradient className="absolute inset-0 rounded-4xl overflow-hidden">
+      
       <Container className="relative">
         <Navbar
           banner={
@@ -45,22 +57,23 @@ function Hero() {
           }
         />
         <div className="flex flex-col items-center justify-center text-center pb-24 pt-16 sm:pb-32 sm:pt-24 md:pb-32 md:pt-32">
-        <h1 className=" font-serif font-medium text-balance text-6xl/[0.9]  tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-8xl/[1.2]">
-          Where Your On-chain Assets Grow Smarter
-        </h1>
+      <h1
+        className={`${merriweather.className} font-medium text-balance text-6xl/[0.9] tracking-tight text-gray-950 sm:text-8xl/[0.8] md:text-8xl/[1.2]`}
+      >
+        Where Your On-chain Assets Grow Smarter
+      </h1>
 
+      <p className={`${dmSans.className} mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8`}>
+        Redefining how crypto assets grow—unlocking DeFi's potential for smarter, on-chain capital efficiency
+      </p>
 
-        <p className="mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8">
-          Redefining how crypto assets grow—unlocking DeFi’s potential for smarter, on-chain capital efficiency
-        </p>
-        <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
-          <Button href="#">Get started</Button>
-          <Button variant="secondary" href="/pricing">
-            View Strategies
-          </Button>
-        </div>
+      <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
+        <Button>Get started</Button>
+        <Button variant="secondary">View Strategies</Button>
       </div>
+    </div>
       </Container>
+      </Gradient>
     </div>
   )
 }

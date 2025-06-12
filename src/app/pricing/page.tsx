@@ -2,7 +2,7 @@ import type React from "react"
 import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Footer } from "@/components/footer"
-import { Gradient, GradientBackground } from "@/components/gradient"
+import { Gradient } from "@/components/gradient"
 import { LogoCloud } from "@/components/logo-cloud"
 import { Navbar } from "@/components/navbar"
 import { Heading, Lead, Subheading } from "@/components/text"
@@ -255,7 +255,7 @@ export default async function Pricing({
 
   return (
     <main className="overflow-hidden">
-      <GradientBackground />
+      <Gradient />
       <Container>
         <Navbar />
       </Container>

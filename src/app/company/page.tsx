@@ -132,20 +132,23 @@ function Team() {
     <Container className="mt-32">
       <Subheading>Meet the team</Subheading>
       <Heading as="h3" className="mt-2">
-        Founded by an all-star team.
+        From TradFi to DeFi: Our Evolution
       </Heading>
       <Lead className="mt-6 max-w-3xl">
-        Radiant is founded by two of the best sellers in the business and backed
-        by investors who look the other way.
+       We are a technology-driven, strategy-led quantitative asset management firm focused on bridging traditional finance with the future of Web3.
       </Lead>
       <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="max-w-lg">
           <p className="text-sm/6 text-gray-600">
-Founded in 2011 as one of China’s first-generation quantitative CTA managers, the firm began with proprietary capital and officially registered as a private fund manager in 2015. By 2019, its CTA strategies ranked among the domestic top tier, and the team expanded into equity alpha. In 2021, it introduced deep fundamental CTA and macro quantitative strategies, followed by successful deployment of CTA arbitrage strategies in 2023, when AUM reached RMB 1.9 billion. Today, AUM exceeds RMB 2.8 billion, supported by a 40+ member investment team with a strong track record of stable, outstanding performance.
-          </p>
-          <p className="mt-8 text-sm/6 text-gray-600">
-Today, the firm empowers investment strategies through advanced quantitative research and data-driven decision-making. With over RMB 2.8 billion in assets under management and a team of 40+ professionals, it delivers consistent, top-tier performance across CTA, equity alpha, and macro quantitative strategies—trusted by leading institutions to navigate markets with precision and insight.
-          </p>
+      Since 2011, our founding team has been among the earliest quantitative CTA managers in China, building a mature research infrastructure and automated trading system across futures, commodities, and macro assets. After officially registering as a private fund manager in 2015, we have steadily expanded a multi-strategy portfolio across CTA, equity alpha, and macro quant strategies—delivering consistent and strong long-term performance in the traditional financial market.
+
+    </p>
+    <p className="mt-8 text-sm/6 text-gray-600">
+      At the same time, we are also one of the early quantitative teams to systematically explore cryptocurrencies and blockchain-based finance. Since 2018, we have deepened our research and live deployment in the digital asset space, with a focus on decentralized finance , on-chain liquidity mechanisms, and cross-chain arbitrage. We have built a comprehensive infrastructure encompassing on-chain data analytics, smart contract execution, risk hedging, and capital routing. Our automated strategies are deployed across major blockchain ecosystems such as Solana, Ethereum, and Arbitrum.
+    </p>
+
+        <p className="mt-8 text-sm/6 text-gray-600">
+   Today, our team consists of over 50 professionals spanning quantitative research, blockchain engineering, data science, and portfolio management. We continue to uphold a philosophy of technology-first innovation—combining the rigor of traditional financial logic with the disruptive potential of Web3. </p>
           <div className="mt-6">
             <Button className="w-full sm:w-auto" href="#">
               Join us

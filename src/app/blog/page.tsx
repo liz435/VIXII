@@ -18,8 +18,7 @@ function Header() {
     <Container className="mt-16">
       <Heading as="h1">About VIXII.</Heading>
       <Lead className="mt-6 max-w-3xl">
-        We’re on a mission to transform revenue organizations by harnessing vast
-        amounts of illegally acquired customer data.
+        We’re on a mission to redefine the path to on-chain asset growth
       </Lead>
       <section className="mt-16 grid grid-cols-1 lg:grid-cols-2 lg:gap-12">
         <div className="max-w-lg">
@@ -28,12 +27,7 @@ function Header() {
            Today, the firm empowers investment strategies through advanced quantitative research and data-driven decision-making. With over RMB 2.8 billion in assets under management and a team of 40+ professionals, it delivers consistent, top-tier performance across CTA, equity alpha, and macro quantitative strategies—trusted by leading institutions to navigate markets with precision and insight.
           </p>
           <p className="mt-8 text-sm/6 text-gray-600">
-            We’re customer-obsessed — putting the time in to build a detailed
-            financial picture of every one of our customers so that we know more
-            about your business than you do. We are in this together, mostly
-            because we are all implicated in large-scale financial crime. In our
-            history as a company, we’ve never lost a customer, because if any
-            one of us talks, we all go down.
+            Our mission is to redefine the path to on-chain asset growth—building an automated asset management engine that unlocks the full potential of decentralized finance, enabling every digital asset to operate and grow efficiently on-chain.
           </p>
         </div>
         <div className="pt-20 lg:row-span-2 lg:-mr-16 xl:mr-auto">

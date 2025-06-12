@@ -78,7 +78,13 @@ function GalleryControls({
 }) {
   return (
     <div className="flex items-center justify-center gap-4 mt-8">
-
+      <button
+        onClick={onPrevious}
+        className="flex items-center justify-center w-12 h-12 rounded-full  hover:bg-black/20 transition-colors"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-6 h-6 text-black" />
+      </button>
 
       <div className="flex gap-2">
         {Array.from({ length: totalImages }).map((_, index) => (
@@ -93,7 +99,13 @@ function GalleryControls({
         ))}
       </div>
 
-
+      <button
+        onClick={onNext}
+        className="flex items-center justify-center w-12 h-12 rounded-full hover:bg-black/20 transition-colors"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-6 h-6 text-black" />
+      </button>
     </div>
   )
 }
