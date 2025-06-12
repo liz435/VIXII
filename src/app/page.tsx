@@ -64,7 +64,7 @@ function Hero() {
       </h1>
 
       <p className={`${dmSans.className} mt-8 max-w-lg text-xl/7 font-medium text-gray-950/75 sm:text-2xl/8`}>
-        Redefining how crypto assets grow—unlocking DeFi's potential for smarter, on-chain capital efficiency
+        Redefining how crypto assets grow—unlocking DeFi&apos;s potential for smarter, on-chain capital efficiency
       </p>
 
       <div className="mt-12 flex flex-col gap-x-6 gap-y-4 sm:flex-row">
