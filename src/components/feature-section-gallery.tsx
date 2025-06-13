@@ -1,63 +1,62 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Container } from "@/components/container"
-import { Heading } from "@/components/text"
+import { Container } from '@/components/container'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 // Sample screenshots data - replace with your actual images
 const screenshots = [
   {
     id: 1,
-    src: "/screenshots/app.png",
-    alt: "Main dashboard view",
-    title: "Complete Sales Pipeline Overview",
+    src: '/screenshots/app.png',
+    alt: 'Main dashboard view',
+    title: 'Complete Sales Pipeline Overview',
   },
   {
     id: 2,
-    src: "/screenshots/competitors.png",
-    alt: "Analytics dashboard",
-    title: "Advanced Analytics & Insights",
+    src: '/screenshots/competitors.png',
+    alt: 'Analytics dashboard',
+    title: 'Advanced Analytics & Insights',
   },
   {
     id: 3,
-    src: "/screenshots/profile.png",
-    alt: "Deal management interface",
-    title: "Deal Management Made Simple",
+    src: '/screenshots/profile.png',
+    alt: 'Deal management interface',
+    title: 'Deal Management Made Simple',
   },
   {
     id: 4,
-    src: "/screenshots/networking.png",
-    alt: "Reporting interface",
-    title: "Comprehensive Reporting Tools",
+    src: '/screenshots/networking.png',
+    alt: 'Reporting interface',
+    title: 'Comprehensive Reporting Tools',
   },
 ]
 
 function Screenshot({
   src,
   alt,
-  width,
-  height,
   className,
 }: {
   src: string
   alt: string
-  width: number
-  height: number
   className?: string
 }) {
   return (
     <div className={`relative ${className}`}>
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg" />
-      <div className="relative rounded-2xl bg-[#0B1426] p-2 ring-1 ring-black/10 backdrop-blur">
-        <img
-          src={src || "/placeholder.svg"}
-          alt={alt}
-          width={width}
-          height={height}
-          className="rounded-lg shadow-2xl ring-1 ring-black/5"
-        />
+      <div className="relative rounded-2xl p-2  h-full">
+        <div className="relative w-full h-full overflow-hidden rounded-4xl">
+          <Image
+            src={src || '/placeholder.svg'}
+            alt={alt}
+            fill
+            className="object-contain rounded-3xl shadow-2xl ring-1 ring-black/5 rounded-lg"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 76rem, 76rem"
+            priority={true}
+          />
+        </div>
       </div>
     </div>
   )
@@ -77,13 +76,13 @@ function GalleryControls({
   onGoToIndex: (index: number) => void
 }) {
   return (
-    <div className="flex items-center justify-center gap-4 mt-8">
+    <div className="mt-8 flex items-center justify-center gap-4">
       <button
         onClick={onPrevious}
-        className="flex items-center justify-center w-12 h-12 rounded-full  hover:bg-black/20 transition-colors"
+        className="flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black/20"
         aria-label="Previous image"
       >
-        <ChevronLeft className="w-6 h-6 text-black" />
+        <ChevronLeft className="h-6 w-6 text-black" />
       </button>
 
       <div className="flex gap-2">
@@ -91,8 +90,10 @@ function GalleryControls({
           <button
             key={index}
             onClick={() => onGoToIndex(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              index === currentIndex ? "bg-black" : "bg-black/30 hover:bg-black/50"
+            className={`h-2 w-2 rounded-full transition-colors ${
+              index === currentIndex
+                ? 'bg-black'
+                : 'bg-black/30 hover:bg-black/50'
             }`}
             aria-label={`Go to image ${index + 1}`}
           />
@@ -101,10 +102,10 @@ function GalleryControls({
 
       <button
         onClick={onNext}
-        className="flex items-center justify-center w-12 h-12 rounded-full hover:bg-black/20 transition-colors"
+        className="flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black/20"
         aria-label="Next image"
       >
-        <ChevronRight className="w-6 h-6 text-black" />
+        <ChevronRight className="h-6 w-6 text-black" />
       </button>
     </div>
   )
@@ -120,18 +121,24 @@ export function FeatureSectionG() {
     if (isHovered) return // Don't auto-scroll when user is hovering
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1))
-    }, 3000) // Change image every 4 seconds
+      setCurrentIndex((prevIndex) =>
+        prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1,
+      )
+    }, 3000) // Change image every 3 seconds
 
     return () => clearInterval(interval)
   }, [isHovered])
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1))
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1,
+    )
   }
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1))
+    setCurrentIndex((prevIndex) =>
+      prevIndex === screenshots.length - 1 ? 0 : prevIndex + 1,
+    )
   }
 
   const goToIndex = (index: number) => {
@@ -142,37 +149,47 @@ export function FeatureSectionG() {
     <div className="overflow-hidden bg-white">
       <Container className="pb-24 pt-16">
         <div className="">
-          <Heading as="h2" className="max-w-3xl text-black">
-            A snapshot of your entire sales pipeline.
-          </Heading>
-
-          <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="mt-16">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Screenshot
-                  width={1216}
-                  height={768}
-                  src={currentScreenshot.src}
-                  alt={currentScreenshot.alt}
-                  className="h-[36rem] sm:h-auto sm:w-[76rem] mx-auto"
-                />
-
+          <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="mt-16"
+          >
+            {/* Fixed size container to prevent layout shift */}
+            <div className="mx-auto w-full max-w-[76rem] h-[36rem] sm:h-[48rem]">
+              <AnimatePresence mode="wait">
                 <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full h-full"
+                >
+                  <Screenshot
+                    src={currentScreenshot.src}
+                    alt={currentScreenshot.alt}
+                    className="w-full h-full"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Title with fixed height to prevent layout shift */}
+            <div className="mt-6 h-8 flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="mt-6"
                 >
-                  <h3 className="text-xl font-semibold text-center text-black">{currentScreenshot.title}</h3>
+                  <h3 className="text-center text-xl font-semibold text-black">
+                    {currentScreenshot.title}
+                  </h3>
                 </motion.div>
-              </motion.div>
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
 
             <GalleryControls
               currentIndex={currentIndex}

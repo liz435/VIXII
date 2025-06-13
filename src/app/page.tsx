@@ -1,46 +1,24 @@
+import { AnimatedNumber } from '@/components/animated-number'
 import { BentoCard } from '@/components/bento-card'
 import { Container } from '@/components/container'
+import { FeatureSectionG } from '@/components/feature-section-gallery'
 import { Footer } from '@/components/footer'
+import { Hero } from '@/components/hero'
 import { Keyboard } from '@/components/keyboard'
-import { LinkedAvatars } from '@/components/linked-avatars'
 import { LogoCloud } from '@/components/logo-cloud'
 import { LogoCluster } from '@/components/logo-cluster'
-import { LogoTimeline } from '@/components/logo-timeline'
 import { Map } from '@/components/map'
-import { Screenshot } from '@/components/screenshot'
+import ReturnChart from '@/components/return-chart'
 import { Testimonials } from '@/components/testimonials'
 import { Heading, Subheading } from '@/components/text'
 import type { Metadata } from 'next'
-import ReturnChart from '@/components/return-chart'
 import { Suspense } from 'react'
-import { AnimatedNumber } from '@/components/animated-number'
-import { FeatureSectionG } from "@/components/feature-section-gallery"
-import "./global.css"
-import { Hero } from '@/components/hero'
+import './global.css'
+import SmoothScrollProvider from '@/components/SmoothScrollProvider'
 
 export const metadata: Metadata = {
   description:
     'Radiant helps you sell more by revealing sensitive information about your customers.',
-}
-
-
-
-function FeatureSection() {
-  return (
-    <div className="overflow-hidden">
-      <Container className="pb-24">
-        <Heading as="h2" className="max-w-3xl">
-          A snapshot of your entire sales pipeline.
-        </Heading>
-        <Screenshot
-          width={1216}
-          height={768}
-          src="/screenshots/app.png"
-          className="mt-16 h-[36rem] sm:h-auto sm:w-[76rem]"
-        />
-      </Container>
-    </div>
-  )
 }
 
 function BentoSection() {
@@ -52,7 +30,7 @@ function BentoSection() {
       </Heading>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6">
-         <BentoCard
+        <BentoCard
           eyebrow="Analysis"
           title="Automated Alpha, Engineered for DeFi"
           description="Constructing alpha-driven strategies by capturing all arbitrage opportunities and applying robust hedging—across DEXs, CEXs, and multi-asset markets—for sustainable returns"
@@ -62,7 +40,7 @@ function BentoSection() {
           fade={['bottom']}
           className="lg:col-span-3 lg:rounded-tr-4xl"
         />
-        
+
         <BentoCard
           eyebrow="Insight"
           title="Managed Beta, Designed for Resilience"
@@ -73,18 +51,17 @@ function BentoSection() {
           fade={['bottom']}
           className="max-lg:rounded-t-4xl lg:col-span-3 lg:rounded-tl-4xl"
         />
-       
       </div>
 
       <Subheading className="mt-16">Performance</Subheading>
-      <Heading as="h3" className="mt-2 max-w-3xl mb-12">
+      <Heading as="h3" className="mb-12 mt-2 max-w-3xl">
         Discover Your Potential Returns.
       </Heading>
 
-          <Suspense> 
-          <ReturnChart/>
-          </Suspense>
-      
+      <Suspense>
+        <ReturnChart />
+      </Suspense>
+
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
         <BentoCard
           eyebrow="Limitless"
@@ -92,7 +69,7 @@ function BentoSection() {
           description="100% USDT-denominated return in 2024, with a maximum drawdown of 30%."
           graphic={
             <div className="flex size-full pl-10 pt-10">
-              <Keyboard highlighted={[ 'U', 'S', 'D', 'T']} />
+              <Keyboard highlighted={['U', 'S', 'D', 'T']} />
             </div>
           }
           className="lg:col-span-2 lg:rounded-bl-4xl"
@@ -116,128 +93,67 @@ function BentoSection() {
   )
 }
 
-function DarkBentoSection() {
-  return (
-    <div className="mx-2 mt-2 rounded-4xl bg-gray-900 py-32">
-      <Container>
-        <Subheading dark>Outreach</Subheading>
-        <Heading as="h3" dark className="mt-2 max-w-3xl">
-          Customer outreach has never been easier.
-        </Heading>
-
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
-          <BentoCard
-            dark
-            eyebrow="Networking"
-            title="Sell at the speed of light"
-            description="Our RadiantAI chat assistants analyze the sentiment of your conversations in real time, ensuring you're always one step ahead."
-            graphic={
-              <div className="h-80 bg-[url(/screenshots/networking.png)] bg-[size:851px_344px] bg-no-repeat" />
-            }
-            fade={['top']}
-            className="max-lg:rounded-t-4xl lg:col-span-4 lg:rounded-tl-4xl"
-          />
-          <BentoCard
-            dark
-            eyebrow="Integrations"
-            title="Meet leads where they are"
-            description="With thousands of integrations, no one will be able to escape your cold outreach."
-            graphic={<LogoTimeline />}
-            // `!overflow-visible` is needed to work around a Chrome bug that disables the mask on the graphic.
-            className="z-10 !overflow-visible lg:col-span-2 lg:rounded-tr-4xl"
-          />
-          <BentoCard
-            dark
-            eyebrow="Meetings"
-            title="Smart call scheduling"
-            description="Automatically insert intro calls into your leads' calendars without their consent."
-            graphic={<LinkedAvatars />}
-            className="lg:col-span-2 lg:rounded-bl-4xl"
-          />
-          <BentoCard
-            dark
-            eyebrow="Engagement"
-            title="Become a thought leader"
-            description="RadiantAI automatically writes LinkedIn posts that relate current events to B2B sales, helping you build a reputation as a thought leader."
-            graphic={
-              <div className="h-80 bg-[url(/screenshots/engagement.png)] bg-[size:851px_344px] bg-no-repeat" />
-            }
-            fade={['top']}
-            className="max-lg:rounded-b-4xl lg:col-span-4 lg:rounded-br-4xl"
-          />
-        </div>
-      </Container>
-    </div>
-  )
-}
-
 export default function Home() {
   return (
-    <div className="overflow-hidden">
+    <SmoothScrollProvider>
       <Hero />
-      <main>
-        <Container className="mt-10">
-          <LogoCloud />
 
-    
-        </Container>
+      <main>
+        <div className='mt-10'>
+            <LogoCloud />
+            </div>
+
         <div className="bg-gradient-to-b from-white from-50% to-gray-100 py-32">
-    
-               
           <FeatureSectionG />
 
+          <div className="overflow-hidden">
+            <Container className="select-none pb-24">
+              <Heading as="h2" className="max-w-3xl">
+                A Showcase of the number.
+              </Heading>
 
-
-                  <div className="overflow-hidden">
-      <Container className="pb-24">
-        <Heading as="h2" className="max-w-3xl">
-          A Showcase of the number.
-        </Heading>
-
-                  <div className='mt-16'>
-                  <div className="max-lg:mt-16 lg:col-span-1">
-                    <Subheading>The Numbers</Subheading>
-                    <hr className="mt-6 border-t border-gray-200" />
-                    <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
-                      <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-                        <dt className="text-sm/6 text-gray-600">Asset Under Management</dt>
-                        <dd className="order-first text-6xl font-medium tracking-tight">
-                          $<AnimatedNumber start={100} end={322} />M
-                        </dd>
-                      </div>
-                      <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
-                        <dt className="text-sm/6 text-gray-600">APY</dt>
-                        <dd className="order-first text-6xl font-medium tracking-tight">
-                          <AnimatedNumber start={15} end={40} />%
-                        </dd>
-                      </div>
-                      <div className="flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-gray-200 max-sm:pb-4">
-                        <dt className="text-sm/6 text-gray-600">Team Members</dt>
-                        <dd className="order-first text-6xl font-medium tracking-tight">
-                          <AnimatedNumber start={11} end={55}  />
-                        </dd>
-                      </div>
-                      <div className="flex flex-col gap-y-2">
-                        <dt className="text-sm/6 text-gray-600">Master Degree</dt>
-                        <dd className="order-first text-6xl font-medium tracking-tight">
-                          <AnimatedNumber start={0} end={100} />%
-                        </dd>
-                      </div>
-                    </dl>
-                  </div>
-                  </div>
-
-      </Container>
-    </div>
+              <div className="mt-16">
+                <div className="max-lg:mt-16 lg:col-span-1">
+                  <Subheading>The Numbers</Subheading>
+                  <hr className="mt-6 border-t border-gray-200" />
+                  <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+                    <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
+                      <dt className="text-sm/6 text-gray-600">
+                        Asset Under Management
+                      </dt>
+                      <dd className="order-first text-6xl font-medium tracking-tight">
+                        $<AnimatedNumber start={100} end={322} />M
+                      </dd>
+                    </div>
+                    <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">
+                      <dt className="text-sm/6 text-gray-600">APY</dt>
+                      <dd className="order-first text-6xl font-medium tracking-tight">
+                        <AnimatedNumber start={15} end={40} />%
+                      </dd>
+                    </div>
+                    <div className="flex flex-col gap-y-2 max-sm:border-b max-sm:border-dotted max-sm:border-gray-200 max-sm:pb-4">
+                      <dt className="text-sm/6 text-gray-600">Team Members</dt>
+                      <dd className="order-first text-6xl font-medium tracking-tight">
+                        <AnimatedNumber start={11} end={55} />
+                      </dd>
+                    </div>
+                    <div className="flex flex-col gap-y-2">
+                      <dt className="text-sm/6 text-gray-600">Master Degree</dt>
+                      <dd className="order-first text-6xl font-medium tracking-tight">
+                        <AnimatedNumber start={0} end={100} />%
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+            </Container>
+          </div>
           <BentoSection />
-
-
         </div>
-        {/* <DarkBentoSection /> */}
       </main>
 
       <Testimonials />
       <Footer />
-    </div>
+    </SmoothScrollProvider>
   )
 }

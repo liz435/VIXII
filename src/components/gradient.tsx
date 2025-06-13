@@ -1,8 +1,7 @@
-
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { clsx } from 'clsx'
+import { useEffect, useRef } from 'react'
 
 export function Gradient({
   className,
@@ -34,13 +33,7 @@ export function Gradient({
   }, [])
 
   return (
-    <div
-      {...props}
-      className={clsx(
-        'relative overflow-hidden',
-        className
-      )}
-    >
+    <div {...props} className={clsx('relative overflow-hidden', className)}>
       {/* Video element with proper styling */}
       <video
         ref={videoRef}
@@ -48,16 +41,14 @@ export function Gradient({
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 z-0 h-full w-full object-cover"
         style={{ pointerEvents: 'none' }}
       >
         <source src="/video.webm" type="video/webm" />
       </video>
-      
+
       {/* Content container that sits above the video */}
-      <div className="relative z-10">
-        {props.children}
-      </div>
+      <div className="relative z-10">{props.children}</div>
     </div>
   )
 }
@@ -73,22 +64,24 @@ export function GradientBackground() {
           'rotate-[-10deg] rounded-full blur-3xl',
         )}
         style={{
-          animation: 'cloudDrift 20s linear infinite, cloudFloat 8s ease-in-out infinite',
+          animation:
+            'cloudDrift 20s linear infinite, cloudFloat 8s ease-in-out infinite',
         }}
       />
-      
+
       {/* Secondary cloud for layered effect */}
       <div
         className={clsx(
           'absolute -right-80 -top-20 h-40 w-[28rem] transform-gpu md:right-20',
           'bg-[linear-gradient(135deg,var(--tw-gradient-stops))] from-[#a8f5ff] from-[20%] via-[#7df3e1] via-[60%] to-[#5bead6]',
-          'rotate-[15deg] rounded-full blur-2xl opacity-40',
+          'rotate-[15deg] rounded-full opacity-40 blur-2xl',
         )}
         style={{
-          animation: 'cloudDrift 30s linear infinite reverse, cloudFloat 12s ease-in-out infinite 2s',
+          animation:
+            'cloudDrift 30s linear infinite reverse, cloudFloat 12s ease-in-out infinite 2s',
         }}
       />
-      
+
       <style jsx>{`
         @keyframes cloudDrift {
           0% {
@@ -98,9 +91,10 @@ export function GradientBackground() {
             transform: translateX(100px);
           }
         }
-        
+
         @keyframes cloudFloat {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px);
           }
           33% {
@@ -126,20 +120,22 @@ export function GradientBackgroundTailwind() {
           'rotate-[-10deg] rounded-full blur-3xl',
           'animate-[float_6s_ease-in-out_infinite,breathe_4s_ease-in-out_infinite_alternate]',
         )}
-        style={{
-          '--float-keyframes': `
+        style={
+          {
+            '--float-keyframes': `
             @keyframes float {
               0%, 100% { transform: translateY(0px) rotate(-10deg); }
               50% { transform: translateY(-10px) rotate(-8deg); }
             }
           `,
-          '--breathe-keyframes': `
+            '--breathe-keyframes': `
             @keyframes breathe {
               0% { transform: scale(1) rotate(-10deg); opacity: 0.8; }
               100% { transform: scale(1.05) rotate(-12deg); opacity: 0.6; }
             }
           `,
-        } as React.CSSProperties}
+          } as React.CSSProperties
+        }
       />
     </div>
   )

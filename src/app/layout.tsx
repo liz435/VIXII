@@ -1,5 +1,7 @@
 import '@/styles/tailwind.css'
 import type { Metadata } from 'next'
+import NavbarWrapper from '@/components/NavbarWrapper'
+
 
 export const metadata: Metadata = {
   title: {
@@ -27,7 +29,8 @@ export default function RootLayout({
           href="/blog/feed.xml"
         /> */}
       </head>
-      <body className="text-gray-950 antialiased">{children}</body>
+      <body className="text-gray-950 antialiased">
+        {children}</body>
     </html>
   )
 }
