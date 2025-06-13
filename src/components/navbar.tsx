@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react"
 import { Bars2Icon } from "@heroicons/react/24/solid"
@@ -38,53 +38,133 @@ const productCategories = [
   },
 ]
 
+
+
 function ProductDropdown() {
   const [isOpen, setIsOpen] = useState(false)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [selectorStyle, setSelectorStyle] = useState({ top: 0, height: 0 })
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  // 动态计算选择器位置和高度
+  useEffect(() => {
+    if (hoveredIndex !== null && itemRefs.current[hoveredIndex]) {
+      const element = itemRefs.current[hoveredIndex]
+      if (element) {
+        const rect = element.getBoundingClientRect()
+        const parentRect = element.parentElement?.getBoundingClientRect()
+        
+        if (parentRect) {
+          setSelectorStyle({
+            top: element.offsetTop-4,
+            height: element.offsetHeight-6,
+          })
+        }
+      }
+    }
+  }, [hoveredIndex])
 
   return (
+    <div 
+      className="relative group" 
+      onMouseEnter={() => setIsOpen(true)} 
+      onMouseLeave={() => {
+        setIsOpen(false)
+        setHoveredIndex(null)
+      }}
+    >
+      <button className="relative flex items-center px-4 py-6 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-black/[2.5%] overflow-hidden">
+        Product
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-950 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+      </button>
+      
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute left-0 top-full backdrop-blur-md z-50 pt-1 w-80 origin-top-left"
+          >
+            <div className="relative rounded-xl bg-white/70 p-2 shadow-lg ring-1 ring-black/5">
+              {/* 滑动选择器背景 */}
+              <AnimatePresence>
+                {hoveredIndex !== null && (
+                  <motion.div
+                    layoutId="dropdown-selector"
+                    className="absolute bg-white border ring-1 ring-black/5 rounded-lg left-2 right-2"
+                    initial={{ opacity: 0 }}
+                    animate={{ 
+                      opacity: 1,
+                      y: selectorStyle.top,
+                      height: selectorStyle.height,
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 300, 
+                      damping: 30,
+                      opacity: { duration: 0.1 }
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+              
+              {/* 菜单项 */}
+              {productCategories.map((item, index) => (
+                <div
+                  key={item.href}
+                  ref={(el) => {
+              itemRefs.current[index] = el
+            }}
 
-<div 
-  className="relative group" 
-  onMouseEnter={() => setIsOpen(true)} 
-  onMouseLeave={() => setIsOpen(false)}
->
-  <button className="relative flex items-center px-4 py-6 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-black/[2.5%] overflow-hidden">
-    Product
-    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-950 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
-  </button>
-
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: -10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: -10 }}
-        transition={{ duration: 0.15, ease: "easeOut" }}
-        className="absolute left-0 top-full backdrop-blur-md z-50 pt-1 w-80 origin-top-left"
-      >
-        <div className="rounded-xl bg-white/70 p-2 shadow-lg ring-1 ring-black/5">
-          {productCategories.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="group/item flex items-start gap-3 rounded-lg p-3 hover:bg-gray-50"
-            >
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 group-hover/item:bg-gray-200">
-                <item.icon className="size-5 text-gray-600" />
-              </div>
-              <div className="flex-1">
-                <div className="font-medium text-gray-900">{item.label}</div>
-                <div className="text-sm text-gray-500">{item.description}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</div>
+                  className="relative rounded-lg transition-colors duration-150 z-10"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <Link
+                    href={item.href}
+                    className="flex items-start gap-3 p-3 hover:bg-transparent block"
+                  >
+                    <div className={`flex size-10 shrink-0 items-center justify-center rounded-lg transition-colors duration-150 ${
+                      hoveredIndex === index 
+                        ? 'bg-gray-100 shadow-sm' 
+                        : 'bg-white'
+                    }`}>
+                      <item.icon className={`size-5 transition-colors duration-150 ${
+                        hoveredIndex === index 
+                          ? 'text-gray-700' 
+                          : 'text-gray-600'
+                      }`} />
+                    </div>
+                    <div className="flex-1">
+                      <div className={`font-medium transition-colors duration-150 ${
+                        hoveredIndex === index 
+                          ? 'text-gray-900' 
+                          : 'text-gray-900'
+                      }`}>
+                        {item.label}
+                      </div>
+                      <div className={`text-sm transition-colors duration-150 ${
+                        hoveredIndex === index 
+                          ? 'text-gray-600' 
+                          : 'text-gray-400'
+                      }`}>
+                        {item.description}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
+export default ProductDropdown
 
 const startButtonVariants = {
   hidden: { opacity: 0, x: 20 },
