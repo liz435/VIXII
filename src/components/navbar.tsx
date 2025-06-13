@@ -42,43 +42,63 @@ function ProductDropdown() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
-      <button className="flex items-center px-4 py-6 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-black/[2.5%]">
-        Product
-      </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute left-0 top-full z-50 pt-1 w-80 origin-top-left"
-          >
-            <div className="rounded-xl bg-white p-2 shadow-lg ring-1 ring-black/5">
-              {productCategories.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="group flex items-start gap-3 rounded-lg p-3 hover:bg-gray-50"
-                >
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-gray-200">
-                    <item.icon className="size-5 text-gray-600" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-medium text-gray-900">{item.label}</div>
-                    <div className="text-sm text-gray-500">{item.description}</div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+<div 
+  className="relative group" 
+  onMouseEnter={() => setIsOpen(true)} 
+  onMouseLeave={() => setIsOpen(false)}
+>
+  <button className="relative flex items-center px-4 py-6 text-base font-medium text-gray-950 bg-blend-multiply hover:bg-black/[2.5%] overflow-hidden">
+    Product
+    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-950 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+  </button>
+
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: -10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: -10 }}
+        transition={{ duration: 0.15, ease: "easeOut" }}
+        className="absolute left-0 top-full backdrop-blur-md z-50 pt-1 w-80 origin-top-left"
+      >
+        <div className="rounded-xl bg-white/70 p-2 shadow-lg ring-1 ring-black/5">
+          {productCategories.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group/item flex items-start gap-3 rounded-lg p-3 hover:bg-gray-50"
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 group-hover/item:bg-gray-200">
+                <item.icon className="size-5 text-gray-600" />
+              </div>
+              <div className="flex-1">
+                <div className="font-medium text-gray-900">{item.label}</div>
+                <div className="text-sm text-gray-500">{item.description}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
   )
 }
+
+const startButtonVariants = {
+  hidden: { opacity: 0, x: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  }),
+}
+
 
 function DesktopNav() {
   return (
@@ -87,22 +107,28 @@ function DesktopNav() {
         <ProductDropdown />
       </PlusGridItem>
 
-      {links.map(({ href, label }) => (
-        <PlusGridItem key={href} className="relative flex">
-          <Link
-            href={href}
-            className="flex items-center px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply data-[hover]:bg-black/[2.5%]"
-          >
-            {label}
-          </Link>
-        </PlusGridItem>
-      ))}
+{links.map(({ href, label }) => (
+  <PlusGridItem key={href} className="relative flex">
+    <Link
+      href={href}
+      className="relative flex items-center px-4 py-3 text-base font-medium text-gray-950 bg-blend-multiply data-[hover]:bg-black/[2.5%] group overflow-hidden"
+    >
+      {label}
+      {/* Sliding underline */}
+      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-950 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+    </Link>
+  </PlusGridItem>
+))}
 
-      <PlusGridItem className="relative flex">
-        <Button href="/login" className="mt-3 mb-3">
-          Login &nbsp; <ArrowUpRight strokeWidth={1} />
-        </Button>
-      </PlusGridItem>
+<PlusGridItem className="relative flex">
+  <Button 
+    href="/login" 
+    className="relative mt-3 mb-3 group overflow-hidden transform transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] active:scale-95 active:translate-y-0"
+  >
+    Login &nbsp; <ArrowUpRight strokeWidth={1} className="transition-transform duration-300 group-hover:rotate-12" />
+   
+  </Button>
+</PlusGridItem>
     </nav>
   )
 }

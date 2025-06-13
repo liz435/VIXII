@@ -13,12 +13,12 @@ export function Logo({ className }: { className?: string }) {
     <>
     <span className="flex items-center gap-2">
       <img
-        alt="XIVII"
+        alt="VIXII"
         src="/logo/VIXII.svg"
         className="h-9 max-sm:mx-auto sm:h-8 lg:h-10"
       />
       
-     <h1 className="text-3xl ">XIVII</h1>
+     <h1 className="text-3xl ">VIXII</h1>
       </span>
       </>
   )

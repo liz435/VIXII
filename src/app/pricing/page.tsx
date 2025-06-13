@@ -203,59 +203,57 @@ function PlusIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 }
 
 
-import { clsx } from 'clsx'
-
-export function FrequentlyAskedQuestions() {
+function FrequentlyAskedQuestions() {
   return (
     <Container>
       <section id="faqs" className="scroll-mt-8">
-        <Subheading className="text-center">Frequently Asked Questions</Subheading>
+        <Subheading className="text-center">Frequently asked questions</Subheading>
         <Heading as="div" className="mt-2 text-center">
           Your questions answered.
         </Heading>
         <div className="mx-auto mb-32 mt-16 max-w-xl space-y-12">
-          <dl className="space-y-8">
-            <dt className="text-sm font-semibold">
-              How safe is the DeFi Market-Neutral Hedge Fund in the vault?
-            </dt>
+          <dl>
+            <dt className="text-sm font-semibold">What measures are in place to ensure the security of our data?</dt>
             <dd className="mt-4 text-sm/6 text-gray-600">
-              <strong>Your Assets Stay in Your Control:</strong> We built our JLP Navigator Vault on Drift’s secure Vault system, so you can verify everything on-chain.<br/>
-              <strong>We Can Trade, Not Touch Your Funds:</strong> Our system only executes trades—it cannot withdraw or move your assets. You can exit anytime.<br/>
-              <strong>Built on Proven Code:</strong> We haven’t altered Drift’s audited Vault code. Any unauthorized change would be publicly visible.
+              Data security is a top priority for us, which is ironic given that our business depends on others not
+              taking it very seriously. We understand that any breach could put both us and most of our customers out of
+              business—and behind bars. We employ robust security measures, including data encryption, secure data
+              centers, and regular security audits to ensure this never happens.
             </dd>
-
-            <dt className="text-sm font-semibold">
-              What are the smart contract risks associated with VIXII?
-            </dt>
+          </dl>
+          <dl>
+            <dt className="text-sm font-semibold">Is there a mobile app available for your platform?</dt>
             <dd className="mt-4 text-sm/6 text-gray-600">
-              <strong>Built on Proven Infrastructure:</strong> VIXII runs entirely on Drift’s audited smart contracts—no bespoke code here.<br/>
-              <strong>Institutional-Grade Security:</strong> By leveraging Drift’s battle-tested framework, we inherit its transparent architecture and end-to-end integrity.
+              Yes, we offer a mobile app that provides all the key functionalities of our desktop platform, allowing
+              sales reps to manage deals on the go. Additionally, we have another app pre-installed on most modern
+              smartphones that allows us to track your location, listen to your conversations, and access your camera
+              and microphone at any time. This app is not available for download.
             </dd>
-
-            <dt className="text-sm font-semibold">
-              How does the vault generate returns?
-            </dt>
+          </dl>
+          <dl>
+            <dt className="text-sm font-semibold">Can I customize the workflow to match our company&apos;s deal process?</dt>
             <dd className="mt-4 text-sm/6 text-gray-600">
-              The Vault earns yield through multiple streams:
-              <ul className="list-disc ml-5 mt-2">
-                <li><strong>JLP Rewards:</strong> From providing liquidity to Jupiter pools.</li>
-                <li><strong>Funding Rates:</strong> Hedging via Drift to capture funding-rate spreads.</li>
-                <li><strong>Leverage:</strong> Optimized borrowing and hedging to boost returns without adding market exposure.</li>
-              </ul>
+              Yes, our platform is highly customizable, although there should be no need. Before you sign up, we
+              discreetly gather information about your company and its processes from a variety of sources. We then use
+              this information to pre-configure the platform to match your existing workflows. This is why we ask for
+              your social security number and access to your email account during the sign-up process.
             </dd>
-
-            <dt className="text-sm font-semibold">
-              Is this fund delta-neutral?
-            </dt>
+          </dl>
+          <dl>
+            <dt className="text-sm font-semibold">What kind of support do you offer?</dt>
             <dd className="mt-4 text-sm/6 text-gray-600">
-              Yes—our Vault continuously hedges all positions to maintain delta-neutrality, so price moves in BTC, ETH, SOL, USDT, etc., have minimal PnL impact.
+              We offer comprehensive support through multiple channels, including 24/7 live chat, email, and phone
+              support. However, since we have full access to your internal network, we will know if you&apos;re having issues
+              before you do.
             </dd>
-
-            <dt className="text-sm font-semibold">
-              Is the trader’s PnL from Jupiter hedged?
-            </dt>
+          </dl>
+          <dl>
+            <dt className="text-sm font-semibold">Can I integrate the CRM with other sales intelligence tools?</dt>
             <dd className="mt-4 text-sm/6 text-gray-600">
-              Absolutely. We rebalance in real time against long/short imbalances, so every trader’s PnL is fully hedged and the Vault remains delta-neutral.
+              Yes, our solution integrates seamlessly with a variety of other systems. However, be warned that most of
+              these integrations are short-lived. We have a dedicated team of engineers who reverse-engineer the APIs of
+              other tools, enabling us to build their functionality into our product and eventually put them out of
+              business.
             </dd>
           </dl>
         </div>

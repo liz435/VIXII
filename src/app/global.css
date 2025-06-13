@@ -120,3 +120,12 @@
 .animate-spin-fast {
   animation: spin-fast 2s linear infinite;
 }
+
+.falling-svg {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
