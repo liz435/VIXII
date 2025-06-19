@@ -406,7 +406,7 @@ export default function DefiFlowDiagram() {
               <h3 className="text-lg font-bold text-purple-700">Jupiter Swap</h3>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed">
-              Jupiter Swap provides optimized token swapping with minimal slippage across Solana's liquidity sources.
+              Jupiter Swap provides optimized token swapping with minimal slippage across Solana&apos;s liquidity sources.
             </p>
           </div>
 
