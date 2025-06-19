@@ -14,7 +14,7 @@ import { ArrowUpRight, BarChart3, MessageSquare, Megaphone } from "lucide-react"
 
 const links = [
   { href: "/company", label: "About Us" },
-  { href: "/blog", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ]
 
 const productCategories = [
@@ -56,8 +56,8 @@ function ProductDropdown() {
         
         if (parentRect) {
           setSelectorStyle({
-            top: element.offsetTop-4,
-            height: element.offsetHeight-6,
+            top: element.offsetTop-7,
+            height: element.offsetHeight-5,
           })
         }
       }
@@ -93,7 +93,7 @@ function ProductDropdown() {
                 {hoveredIndex !== null && (
                   <motion.div
                     layoutId="dropdown-selector"
-                    className="absolute bg-white border ring-1 ring-black/5 rounded-lg left-2 right-2"
+                    className="absolute bg-white/90 border  rounded-lg left-2 right-2"
                     initial={{ opacity: 0 }}
                     animate={{ 
                       opacity: 1,

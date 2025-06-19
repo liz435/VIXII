@@ -17,43 +17,43 @@ import { Container } from './container'
 import { Link } from './link'
 import { Heading, Subheading } from './text'
 
-const testimonials = [
+export const testimonials = [
   {
-    img: '/testimonials/tina-yards.jpg',
-    name: 'James Shen',
-    title: ' Co-Founder, Head of Research & Strategy Deployment',
+    img: '/testimonials//tina-yards.jpg',
+    name: 'Crypto Whale 07',
+    title: 'Individual Investor',
     quote:
-      "Veteran quantitative trader since 2009 with a background as Technology Director and VP at a foreign bank. Co-founded one of China's earliest quant funds in 2011. Leads research direction and live trading deployment, with a decade of experience in crypto." },
+      "For the first time, I've experienced institutional-grade trading and security as an individual investor. VIXII's strategies consistently deliver stable performance and have become a cornerstone of my long-term investment allocation.",
+  },
   {
     img: '/testimonials/conor-neville.jpg',
-    name: 'Kai Wang',
-    title: 'Co-Founder, Strategic Lead',
+    name: 'Sophia P.',
+    title: 'Business Development Team, Binance Exchange',
     quote:
-      'Early algorithmic trader in China since 2007 with an MBA from CEIBS. Extensive background in finance, consistently delivering compounding returns. Focuses on integrating technology and structured knowledge into investment strategy.',
+      "VIXII's team demonstrates exceptional understanding of on-chain trading mechanics. Their strategy execution is both precise and efficient, making them our trusted quantitative partner in the DeFi ecosystem.",
   },
   {
     img: '/testimonials/amy-chase.jpg',
-    name: 'Jiawei Xiong',
-    title: 'Quant Researcher & Blockchain Strategy Developer',
+    name: 'Nova DAO Treasury',
+    title: 'DAO Treasury Representative',
     quote:
-      'Expert in signal processing and probability models. Developed a high-frequency CTA strategy with 40% annualized returns. Leads blockchain hedging and strategy adaptation for optimal performance.',
+      "Our DAO treasury has achieved consistent returns through VIXII's platform. The transparency and built-in risk management features are exceptional—perfectly suited for sustainable decentralized fund growth.",
   },
   {
     img: '/testimonials/veronica-winton.jpg',
-    name: 'Cheng Hua',
-    title: 'Quant Researcher & Alpha Factor Developer',
+    name: 'Ryan Cheng',
+    title: 'Manufacturing Industry Founder',
     quote:
-      'Physics background with strong economics training. Specializes in time series analysis and market microstructure. Leads CTA automation and stock alpha factor modeling, including high-frequency data research.',
+      "VIXII transformed my transition from traditional finance to Web3. This platform made sophisticated on-chain strategies both accessible and reliable, significantly enhancing our capital efficiency.",
   },
-    {
+  {
     img: '/testimonials/veronica-winton.jpg',
-    name: 'Michael Jia',
-    title: 'Senior Software Engineer & On-chain Systems Developer',
+    name: 'J. Zhang',
+    title: 'Fund Manager, SL Investment',
     quote:
-      'Experienced engineer with a background in large-scale software and crypto mining infrastructure. Focuses on deploying on-chain strategies, vault operations, and UI/UX development.',
+      "VIXII's strategies are methodically rigorous and perform exceptionally well across all market conditions. We've integrated their solutions as a core source of low-correlation alpha in our diversified portfolio.",
   },
-
-]
+];
 
 function TestimonialCard({
   name,
@@ -185,7 +185,7 @@ export function Testimonials() {
         <div ref={setReferenceWindowRef}>
           <Subheading>Our wonderful team</Subheading>
           <Heading as="h3" className="mt-2">
-            We are here to help
+            Trusted By Professionals
           </Heading>
         </div>
       </Container>

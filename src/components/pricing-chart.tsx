@@ -218,17 +218,17 @@ export default function ReturnChart({
 
   return (
     <CardContent>
-      <div className="rounded-2xl border border-gray-700/50 bg-gray-800/60 p-6 shadow-2xl backdrop-blur-sm">
+      <div className="rounded-2xl bg-gray-200/70 p-6 shadow-2xl backdrop-blur-sm">
         <div className="mb-6 flex justify-center gap-6">
           <div className="flex items-center gap-2 text-sm">
             <TrendingUp className="h-4 w-4 text-cyan-400" />
-            <span className="text-gray-300">
+            <span className="text-gray-800">
               {monthlyReturnRate}% Monthly Return
             </span>
           </div>
           <div className="flex items-center gap-2 text-sm">
             <LineChartIcon className="h-4 w-4 text-amber-400" />
-            <span className="text-gray-300">US Treasury 10-Year Yield</span>
+            <span className="text-gray-800">US Treasury 10-Year Yield</span>
           </div>
         </div>
 

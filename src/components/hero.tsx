@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/button'
 import { Container } from '@/components/container'
-import FallingObjects from '@/components/FallingObjects'
+
 import { Gradient } from '@/components/gradient'
 import { Link } from '@/components/link'
 import { Navbar } from '@/components/navbar'
@@ -103,7 +103,7 @@ export function Hero() {
                   </span>
                 </Button>
               </motion.div>
-              <FallingObjects />
+        
             </div>
           </div>
         </Container>

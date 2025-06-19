@@ -8,17 +8,18 @@ import { Keyboard } from '@/components/keyboard'
 import { LogoCloud } from '@/components/logo-cloud'
 import { LogoCluster } from '@/components/logo-cluster'
 import { Map } from '@/components/map'
-import ReturnChart from '@/components/return-chart'
+import LightThemedChart from '@/components/return-chart'
 import { Testimonials } from '@/components/testimonials'
 import { Heading, Subheading } from '@/components/text'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './global.css'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
+import FallingObjects from '@/components/FallingObjects'
 
 export const metadata: Metadata = {
   description:
-    'Radiant helps you sell more by revealing sensitive information about your customers.',
+    'VIXII DeFi Hedge Fund Strategy for everyone, where your on-chain assests grow smarter',
 }
 
 function BentoSection() {
@@ -31,7 +32,7 @@ function BentoSection() {
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6">
         <BentoCard
-          eyebrow="Analysis"
+          eyebrow="Alpha"
           title="Automated Alpha, Engineered for DeFi"
           description="Constructing alpha-driven strategies by capturing all arbitrage opportunities and applying robust hedging—across DEXs, CEXs, and multi-asset markets—for sustainable returns"
           graphic={
@@ -42,7 +43,7 @@ function BentoSection() {
         />
 
         <BentoCard
-          eyebrow="Insight"
+          eyebrow="Beta"
           title="Managed Beta, Designed for Resilience"
           description="We develop timing strategies based on price and volume trends of major crypto assets, enhanced by tight position control—to outperform the market with fully automated trading and risk management."
           graphic={
@@ -59,7 +60,7 @@ function BentoSection() {
       </Heading>
 
       <Suspense>
-        <ReturnChart />
+        <LightThemedChart />
       </Suspense>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
@@ -97,6 +98,7 @@ export default function Home() {
   return (
     <SmoothScrollProvider>
       <Hero />
+                                      <FallingObjects/>
 
       <main>
         <div className='mt-10'>
@@ -111,6 +113,7 @@ export default function Home() {
               <Heading as="h2" className="max-w-3xl">
                 A Showcase of the number.
               </Heading>
+
 
               <div className="mt-16">
                 <div className="max-lg:mt-16 lg:col-span-1">
@@ -144,6 +147,7 @@ export default function Home() {
                       </dd>
                     </div>
                   </dl>
+
                 </div>
               </div>
             </Container>

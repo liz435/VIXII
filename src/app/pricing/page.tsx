@@ -1,3 +1,4 @@
+
 import type React from "react"
 import { Button } from "@/components/button"
 import { Container } from "@/components/container"
@@ -9,19 +10,19 @@ import { Heading, Lead, Subheading } from "@/components/text"
 import { StatsCard } from "@/components/return-chart"
 import DefiFlowDiagram from "@/components/defi-flow-diagram"
 import ReturnChart from "@/components/pricing-chart"
+import { FrequentlyAskedQuestions } from "@/components/FAQ"
+
 
 const tiers = [
   {
-    name: "Strategy 1" as const,
+    name: "Strategy" as const,
     slug: "starter",
-    description: "You'll earn",
+    description: "This strategy is perfect for investors who want reliable performance without getting caught in the ups and downs of crypto markets",
     priceMonthly: 1.8,
     href: "#",
     highlights: [
-      { description: "Make the fun publicly available on Drift" },
-      { description: "Everything you need to start" },
-      { description: "RadiantAI integrations", disabled: true },
-      { description: "Competitor analysis", disabled: true },
+      { description: "Make the fund publicly available on Drift" },
+      { description: "USDT-based accounting" },
     ],
     features: [
       { section: "Features", name: "Accounts", value: 3 },
@@ -45,11 +46,8 @@ const tiers = [
     priceMonthly: 3,
     href: "#",
     highlights: [
-      { description: "Up to 10 team members" },
-      { description: "Unlimited deal progress boards" },
-      { description: "Source leads from over 50 verified platforms" },
-      { description: "RadiantAI integrations" },
-      { description: "5 competitor analyses per month" },
+      { description: "Make the fund publicly available on Drift" },
+      { description: "BTC-based accounting" },
     ],
     features: [
       { section: "Features", name: "Accounts", value: 10 },
@@ -99,10 +97,13 @@ const tiers = [
 function Header() {
   return (
     <Container className="mt-16">
-      <Heading as="h1">Pricing that grows with your team size.</Heading>
+      <Heading as="h1">DeFi Market-Neutral Hedge Fund.</Heading>
       <Lead className="mt-6 max-w-3xl">
-        Companies all over the world have closed millions of deals with Radiant. Sign up today and start selling
-        smarter.
+        Earn Stable Returns Without Market Guesswork.
+      </Lead>
+
+      <Lead className="mt-6 max-w-3xl text-[16px]">
+        DeFi Market-Neutral Hedge Fund uses advanced algorithms to scan and capture arbitrage opportunities across decentralized exchanges. Designed to deliver steady, sustainable returns, it minimizes risk by remaining completely neutral to market direction and asset volatility.
       </Lead>
     </Container>
   )
@@ -119,8 +120,12 @@ function PricingCards() {
           ))}
         </div>
         <div className="p-16"></div>
+                  <Heading as="h2"> No bets. No speculation.</Heading>
+                  <Heading as='h2'>Just smart, automated yield.</Heading>
+        <div className="p-8"></div>
         <StatsCard/>
-        <LogoCloud className="mt-24" />
+
+        <LogoCloud className="mt-16" />
       </Container>
     </div>
   )
@@ -144,7 +149,11 @@ function PricingCard({ tier }: { tier: (typeof tiers)[number] }) {
                 </div>
               </div>
               <div className="mt-8">
-                <Button href={tier.href}>Start a free trial</Button>
+                <Button href={tier.href}
+                className="relative mt-3 mb-3 group overflow-hidden transform transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] active:scale-95 active:translate-y-0"
+                 >Start trading
+                 </Button>
+                
               </div>
               <div className="mt-8">
                 <h3 className="text-sm/6 font-medium text-gray-950">Start earning now with:</h3>
@@ -203,64 +212,8 @@ function PlusIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 }
 
 
-function FrequentlyAskedQuestions() {
-  return (
-    <Container>
-      <section id="faqs" className="scroll-mt-8">
-        <Subheading className="text-center">Frequently asked questions</Subheading>
-        <Heading as="div" className="mt-2 text-center">
-          Your questions answered.
-        </Heading>
-        <div className="mx-auto mb-32 mt-16 max-w-xl space-y-12">
-          <dl>
-            <dt className="text-sm font-semibold">What measures are in place to ensure the security of our data?</dt>
-            <dd className="mt-4 text-sm/6 text-gray-600">
-              Data security is a top priority for us, which is ironic given that our business depends on others not
-              taking it very seriously. We understand that any breach could put both us and most of our customers out of
-              business—and behind bars. We employ robust security measures, including data encryption, secure data
-              centers, and regular security audits to ensure this never happens.
-            </dd>
-          </dl>
-          <dl>
-            <dt className="text-sm font-semibold">Is there a mobile app available for your platform?</dt>
-            <dd className="mt-4 text-sm/6 text-gray-600">
-              Yes, we offer a mobile app that provides all the key functionalities of our desktop platform, allowing
-              sales reps to manage deals on the go. Additionally, we have another app pre-installed on most modern
-              smartphones that allows us to track your location, listen to your conversations, and access your camera
-              and microphone at any time. This app is not available for download.
-            </dd>
-          </dl>
-          <dl>
-            <dt className="text-sm font-semibold">Can I customize the workflow to match our company&apos;s deal process?</dt>
-            <dd className="mt-4 text-sm/6 text-gray-600">
-              Yes, our platform is highly customizable, although there should be no need. Before you sign up, we
-              discreetly gather information about your company and its processes from a variety of sources. We then use
-              this information to pre-configure the platform to match your existing workflows. This is why we ask for
-              your social security number and access to your email account during the sign-up process.
-            </dd>
-          </dl>
-          <dl>
-            <dt className="text-sm font-semibold">What kind of support do you offer?</dt>
-            <dd className="mt-4 text-sm/6 text-gray-600">
-              We offer comprehensive support through multiple channels, including 24/7 live chat, email, and phone
-              support. However, since we have full access to your internal network, we will know if you&apos;re having issues
-              before you do.
-            </dd>
-          </dl>
-          <dl>
-            <dt className="text-sm font-semibold">Can I integrate the CRM with other sales intelligence tools?</dt>
-            <dd className="mt-4 text-sm/6 text-gray-600">
-              Yes, our solution integrates seamlessly with a variety of other systems. However, be warned that most of
-              these integrations are short-lived. We have a dedicated team of engineers who reverse-engineer the APIs of
-              other tools, enabling us to build their functionality into our product and eventually put them out of
-              business.
-            </dd>
-          </dl>
-        </div>
-      </section>
-    </Container>
-  )
-}
+
+
 
 export default async function Pricing({
   searchParams,
@@ -282,11 +235,19 @@ export default async function Pricing({
       <Header />
       <PricingCards />
       <div className="flex items-center justify-center min-h-screen">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-4xl -mt-12">
           <DefiFlowDiagram />
         </div>
       </div>
-      {/* <PricingTable selectedTier={tier} /> */}
+
+      <Container>
+                      <Lead>
+        One of the fund’s key sources of alpha comes from JLP — the Jupiter Liquidity Provider token.Since launch, the Jupiter aggregator has generated over $180 million in fees, with 75% contractually allocated back to JLP holders. This creates a robust yield foundation for liquidity providers.However, holding JLP also exposes users to crypto price volatility and directional risk from trader PnL.
+
+Our strategy is designed to hedge these exposures by shorting the underlying assets (SOL, ETH, and BTC), effectively neutralizing market and PnL risks while capturing the protocol’s stable fee returns.
+      </Lead>
+      </Container>
+
       <FrequentlyAskedQuestions />
       <Footer />
     </main>

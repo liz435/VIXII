@@ -87,7 +87,7 @@ function Logo({
           },
         },
       }}
-      alt=""
+      alt="cluster"
       src={src}
       style={{ left, top } as React.CSSProperties}
       className="absolute size-16 rounded-2xl border-none "
