@@ -15,7 +15,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './global.css'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
-import FallingObjects from '@/components/FallingObjects'
+import SvgRain from '@/components/FallingObjects'
 
 export const metadata: Metadata = {
   description:
@@ -98,8 +98,8 @@ export default function Home() {
   return (
     <SmoothScrollProvider>
       <Hero />
-                                      <FallingObjects/>
-
+  
+                           
       <main>
         <div className='mt-10'>
             <LogoCloud />
@@ -109,7 +109,14 @@ export default function Home() {
           <FeatureSectionG />
 
           <div className="overflow-hidden">
-            <Container className="select-none pb-24">
+          <SvgRain 
+  targetSelector=".sectionThatRains" 
+  speedThreshold={2} 
+  spawnRate={4}
+  debug={false}
+/>
+            <Container className="select-none pb-24 sectionThatRains">
+           
               <Heading as="h2" className="max-w-3xl">
                 A Showcase of the number.
               </Heading>
@@ -118,6 +125,7 @@ export default function Home() {
               <div className="mt-16">
                 <div className="max-lg:mt-16 lg:col-span-1">
                   <Subheading>The Numbers</Subheading>
+
                   <hr className="mt-6 border-t border-gray-200" />
                   <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                     <div className="flex flex-col gap-y-2 border-b border-dotted border-gray-200 pb-4">

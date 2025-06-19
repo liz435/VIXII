@@ -147,12 +147,12 @@ export function FeatureSectionG() {
 
   return (
     <div className="overflow-hidden bg-white">
-      <Container className="pb-24 pt-16">
+      <Container className="pb-24">
         <div className="">
           <div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="mt-16"
+            className=""
           >
             {/* Fixed size container to prevent layout shift */}
             <div className="mx-auto w-full max-w-[76rem] h-[36rem] sm:h-[48rem]">

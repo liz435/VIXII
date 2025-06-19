@@ -20,20 +20,20 @@ const links = [
 const productCategories = [
   {
     href: "/pricing?tier=starter",
-    label: "Strategy 1",
-    description: "Track performance and gain valuable insights",
+    label: "Fund 1",
+    description: "USDC Based Accounting",
     icon: BarChart3,
   },
   {
     href: "/pricing?tier=growth",
-    label: "Strategy 2",
-    description: "Grow your audience and boost engagement",
+    label: "Fund 2",
+    description: "BTC Based Accounting",
     icon: Megaphone,
   },
   {
     href: "/pricing?tier=enterprise",
-    label: "Strategy 3",
-    description: "Deliver exceptional customer experiences",
+    label: "Available soon",
+    description: "Expect something more wonderful",
     icon: MessageSquare,
   },
 ]

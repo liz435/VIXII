@@ -16,14 +16,36 @@ const logos = [
   { alt: "usdt", src: "/logo-cluster/tether-usdt-logo.svg" },
 ]
 
-export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) {
-  // Duplicate logos multiple times to ensure continuous scrolling
-  const duplicatedLogos = [...logos, ...logos, ...logos]
-  const [isLoaded, setIsLoaded] = useState(false)
+// Shuffle function to randomize logo order
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
 
-  // Set isLoaded to true after component mounts
+export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [row1Logos, setRow1Logos] = useState<typeof logos>([])
+  const [row2Logos, setRow2Logos] = useState<typeof logos>([])
+
+  // Initialize with randomized logos after component mounts
   useEffect(() => {
-    setIsLoaded(true)
+    const shuffled1 = shuffleArray(logos)
+    const shuffled2 = shuffleArray(logos)
+
+    // Create multiple duplicates for seamless scrolling
+    setRow1Logos([...shuffled1, ...shuffled1, ...shuffled1, ...shuffled1])
+    setRow2Logos([...shuffled2, ...shuffled2, ...shuffled2, ...shuffled2])
+
+    // Small delay to ensure smooth start
+    const timer = setTimeout(() => {
+      setIsLoaded(true)
+    }, 100)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -37,37 +59,39 @@ export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) 
 
         .marquee-content {
           display: flex;
-          animation-duration: 30s;
+          animation-duration: 40s;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
           animation-play-state: ${isLoaded ? "running" : "paused"};
           opacity: ${isLoaded ? 1 : 0};
-          transition: opacity 0.5s ease;
+          transition: opacity 0.3s ease;
         }
 
         .forward {
           animation-name: scrollForward;
+          transform: translateX(-25%); /* Start from middle position */
         }
 
         .backward {
           animation-name: scrollBackward;
+          transform: translateX(-25%); /* Start from middle position */
         }
 
         @keyframes scrollForward {
           from {
-            transform: translateX(0);
+            transform: translateX(-25%);
           }
           to {
-            transform: translateX(-50%);
+            transform: translateX(-75%);
           }
         }
 
         @keyframes scrollBackward {
           from {
-            transform: translateX(-50%);
+            transform: translateX(-75%);
           }
           to {
-            transform: translateX(0);
+            transform: translateX(-25%);
           }
         }
 
@@ -81,13 +105,19 @@ export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) 
           display: flex;
           align-items: center;
           justify-content: center;
+          min-width: 120px;
+        }
+
+        /* Ensure smooth loading */
+        .marquee-content:not(.loaded) {
+          transform: translateX(-25%);
         }
       `}</style>
 
       {/* Row 1 - Left to Right */}
       <div className="marquee mb-10">
-        <div className="marquee-content forward">
-          {duplicatedLogos.map((logo, i) => (
+        <div className={`marquee-content forward ${isLoaded ? "loaded" : ""}`}>
+          {row1Logos.map((logo, i) => (
             <div key={`row1-${i}`} className="logo-item">
               <Image
                 alt={logo.alt}
@@ -96,19 +126,7 @@ export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) 
                 height={48}
                 className="h-9 w-auto object-contain"
                 unoptimized
-                priority={i < 8} // Prioritize loading the first set of logos
-              />
-            </div>
-          ))}
-          {duplicatedLogos.map((logo, i) => (
-            <div key={`row1-dup-${i}`} className="logo-item">
-              <Image
-                alt={logo.alt}
-                src={logo.src || "/placeholder.svg"}
-                width={120}
-                height={48}
-                className="h-9 w-auto object-contain"
-                unoptimized
+                priority={i < 8}
               />
             </div>
           ))}
@@ -117,8 +135,8 @@ export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) 
 
       {/* Row 2 - Right to Left */}
       <div className="marquee mt-10">
-        <div className="marquee-content backward">
-          {duplicatedLogos.map((logo, i) => (
+        <div className={`marquee-content backward ${isLoaded ? "loaded" : ""}`}>
+          {row2Logos.map((logo, i) => (
             <div key={`row2-${i}`} className="logo-item">
               <Image
                 alt={logo.alt}
@@ -127,19 +145,7 @@ export function LogoCloud({ className }: React.ComponentPropsWithoutRef<"div">) 
                 height={48}
                 className="h-9 w-auto object-contain"
                 unoptimized
-                priority={i < 8} // Prioritize loading the first set of logos
-              />
-            </div>
-          ))}
-          {duplicatedLogos.map((logo, i) => (
-            <div key={`row2-dup-${i}`} className="logo-item">
-              <Image
-                alt={logo.alt}
-                src={logo.src || "/placeholder.svg"}
-                width={120}
-                height={48}
-                className="h-9 w-auto object-contain"
-                unoptimized
+                priority={i < 8}
               />
             </div>
           ))}

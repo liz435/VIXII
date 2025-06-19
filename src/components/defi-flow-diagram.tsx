@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { DollarSign, Repeat, TrendingDown, Activity, Shield, Layers, HelpCircle, X } from "lucide-react"
-import { motion } from "framer-motion"
+
 export default function DefiFlowDiagram() {
   const [activeNode, setActiveNode] = useState<string | null>(null)
   const [showInfoOverlay, setShowInfoOverlay] = useState(false)
@@ -27,13 +27,10 @@ export default function DefiFlowDiagram() {
       "drift-delegator": ["usdc-vault", "jlp"],
     }
 
-
-
-
     return connections[activeNode]?.includes(node) || connections[node]?.includes(activeNode)
   }
 
-  // Node component with simple hover glow
+  // Node component without animations
   const NodeComponent = ({
     id,
     position,
@@ -52,92 +49,83 @@ export default function DefiFlowDiagram() {
     colors: { primary: string; secondary: string; accent: string; border: string }
   }) => {
     const active = isActive(id) || isConnected(id)
+    const [hovered, setHovered] = useState(false)
 
-        const [hovered, setHovered] = useState(false)
-
- return (
-    <div
-      className="absolute transition-all duration-500 ease-out"
-      style={{
-        top: `${position.top}px`,
-        left: `${position.left}px`,
-        width: `${size.width}px`,
-        height: `${size.height}px`,
-      }}
-      onMouseEnter={() => {
-        setHovered(true)
-        handleNodeHover(id)
-      }}
-      onMouseLeave={() => {
-        setHovered(false)
-        handleNodeLeave()
-      }}
-    >
-      <motion.div
-        className={`w-full h-full rounded-2xl border-2 backdrop-blur-sm relative overflow-hidden
-          ${active ? `${colors.primary} ${colors.border}` : `bg-white/90 border-gray-200`}`}
-        animate={{
-          boxShadow: active
-            ? '0 0 14px rgba(8, 145, 178, 0.35)'
-            : hovered
-            ? '0 0 8px rgba(8, 145, 178, 0.15)'
-            : '0 0 0 rgba(0,0,0,0)',
+    return (
+      <div
+        className="absolute transition-all duration-300 ease-out"
+        style={{
+          top: `${position.top}px`,
+          left: `${position.left}px`,
+          width: `${size.width}px`,
+          height: `${size.height}px`,
         }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        onMouseEnter={() => {
+          setHovered(true)
+          handleNodeHover(id)
+        }}
+        onMouseLeave={() => {
+          setHovered(false)
+          handleNodeLeave()
+        }}
       >
-        {/* Gradient overlay */}
-        <motion.div
-          className="absolute inset-0 rounded-2xl pointer-events-none"
-          animate={{ opacity: active ? 0.8 : hovered ? 0.35 : 0.15 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+        <div
+          className={`w-full h-full rounded-2xl border-2 backdrop-blur-sm relative overflow-hidden transition-all duration-300
+            ${active ? `${colors.primary} ${colors.border}` : `bg-white/90 border-gray-200`}`}
+          style={{
+            boxShadow: active
+              ? "0 0 14px rgba(8, 145, 178, 0.35)"
+              : hovered
+                ? "0 0 8px rgba(8, 145, 178, 0.15)"
+                : "0 0 0 rgba(0,0,0,0)",
+          }}
         >
-          <div className={`absolute inset-0 bg-gradient-to-br ${colors.secondary} opacity-20`} />
-        </motion.div>
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full p-4 text-center">
+          {/* Gradient overlay */}
           <div
-            className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 relative transition-all duration-500 ease-out ${
-              active ? colors.secondary : 'bg-gray-100'
-            }`}
+            className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300"
+            style={{ opacity: active ? 0.8 : hovered ? 0.35 : 0.15 }}
           >
-            <Icon
-              className={`h-6 w-6 transition-colors duration-500 ease-out ${
-                active ? 'text-white' : 'text-gray-600'
+            <div className={`absolute inset-0 bg-gradient-to-br ${colors.secondary} opacity-20`} />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center justify-center h-full p-4 text-center">
+            <div
+              className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 relative transition-all duration-300 ${
+                active ? colors.secondary : "bg-gray-100"
+              }`}
+            >
+              <Icon className={`h-6 w-6 transition-colors duration-300 ${active ? "text-white" : "text-gray-600"}`} />
+            </div>
+
+            <span
+              className={`text-sm font-mono font-bold text-center w-full transition-colors duration-300 ${
+                active ? colors.accent : "text-gray-700"
+              }`}
+            >
+              {title}
+            </span>
+
+            {subtitle && (
+              <span
+                className={`text-xs font-mono text-center mt-1 w-full transition-colors duration-300 ${
+                  active ? colors.accent : "text-gray-500"
+                }`}
+              >
+                {subtitle}
+              </span>
+            )}
+
+            {/* Accent line */}
+            <div
+              className={`h-0.5 mt-2 rounded-full transition-all duration-300 ${
+                active ? `${colors.secondary.replace("bg-gradient-to-br", "bg-gradient-to-r")} w-12` : "bg-gray-300 w-8"
               }`}
             />
           </div>
-
-          <span
-            className={`text-sm font-mono font-bold text-center w-full transition-colors duration-500 ease-out ${
-              active ? colors.accent : 'text-gray-700'
-            }`}
-          >
-            {title}
-          </span>
-
-          {subtitle && (
-            <span
-              className={`text-xs font-mono text-center mt-1 w-full transition-colors duration-500 ease-out ${
-                active ? colors.accent : 'text-gray-500'
-              }`}
-            >
-              {subtitle}
-            </span>
-          )}
-
-          {/* Accent line */}
-          <div
-            className={`h-0.5 mt-2 rounded-full transition-all duration-500 ease-out ${
-              active
-                ? `${colors.secondary.replace('bg-gradient-to-br', 'bg-gradient-to-r')} w-12`
-                : 'bg-gray-300 w-8'
-            }`}
-          />
         </div>
-      </motion.div>
-    </div>
-  )
+      </div>
+    )
   }
 
   // Static connection arrow component
@@ -406,7 +394,8 @@ export default function DefiFlowDiagram() {
               <h3 className="text-lg font-bold text-purple-700">Jupiter Swap</h3>
             </div>
             <p className="text-gray-700 text-sm leading-relaxed">
-              Jupiter Swap provides optimized token swapping with minimal slippage across Solana&apos;s liquidity sources.
+              Jupiter Swap provides optimized token swapping with minimal slippage across Solana&apos;s liquidity
+              sources.
             </p>
           </div>
 
@@ -471,10 +460,10 @@ export default function DefiFlowDiagram() {
         <p className="text-sm text-gray-600">Interactive visualization of protocol components</p>
       </div>
 
-      {/* Question mark icon */}
+      {/* Question mark icon - keeping the animation */}
       <button
         onClick={() => setShowInfoOverlay(true)}
-        className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white border border-gray-200 rounded-full shadow-md hover:shadow-lg transition-all duration-200"
+        className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white border border-gray-200 rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
         title="View component information"
       >
         <HelpCircle className="h-6 w-6 text-gray-600" />
