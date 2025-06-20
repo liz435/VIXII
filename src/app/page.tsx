@@ -9,7 +9,7 @@ import { Heading, Subheading } from '@/components/text'
 import type { Metadata } from 'next'
 import './global.css'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
-import SvgRain from '@/components/FallingObjects'
+// import SvgRain from '@/components/FallingObjects'
 import { BentoSection } from '@/components/bentoSection'
 
 export const metadata: Metadata = {
@@ -34,12 +34,12 @@ export default function Home() {
           <FeatureSectionG />
 
           <div className="overflow-hidden">
-          <SvgRain 
+          {/* <SvgRain 
             targetSelector=".sectionThatRains" 
             speedThreshold={2} 
             spawnRate={2}
             debug={false}
-          />
+          /> */}
             <Container className="select-none pb-24 sectionThatRains">
            
               <Heading as="h2" className="max-w-3xl">
