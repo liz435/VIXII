@@ -42,7 +42,7 @@ export default function Chat() {
                 <MessageCircle className="h-6 w-6 text-white" />
               </div>
             </div>
-            <div className="font-medium text-gray-700 mb-1">Hello! I'm your AI assistant</div>
+            <div className="font-medium text-gray-700 mb-1">Hello! I&apos;m your AI assistant</div>
             <div className="text-xs">Ask me anything about Web3 and DeFi!</div>
           </div>
         ) : (
