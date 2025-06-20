@@ -10,13 +10,13 @@ import Image from 'next/image'
 const screenshots = [
   {
     id: 1,
-    src: '/screenshots/app.png',
+    src: '/screenshots/alpha.png',
     alt: 'Main dashboard view',
     title: 'Complete Sales Pipeline Overview',
   },
   {
     id: 2,
-    src: '/screenshots/competitors.png',
+    src: '/screenshots/beta.png',
     alt: 'Analytics dashboard',
     title: 'Advanced Analytics & Insights',
   },

@@ -2,6 +2,7 @@
 import { useChat } from "@ai-sdk/react"
 import { useEffect, useRef } from "react"
 import { Send, Loader2, MessageCircle } from 'lucide-react'
+import ReactMarkdown from "react-markdown"
 
 export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -38,12 +39,12 @@ export default function Chat() {
         {messages.length === 0 ? (
           <div className="text-gray-500 text-center py-8 text-sm">
             <div className="mb-3">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 bg-gradient-to-r from-black to-blue-700 rounded-full flex items-center justify-center mx-auto mb-3">
                 <MessageCircle className="h-6 w-6 text-white" />
               </div>
             </div>
-            <div className="font-medium text-gray-700 mb-1">Hello! I&apos;m your AI assistant</div>
-            <div className="text-xs">Ask me anything about Web3 and DeFi!</div>
+            <div className="font-medium text-gray-700 mb-1">Hello! I&apos;m your VIXII assistant</div>
+            <div className="text-xs">Ask me anything about our products and DeFi!</div>
           </div>
         ) : (
           messages.map((message) => (
@@ -58,7 +59,7 @@ export default function Chat() {
                     : "bg-gray-100 text-gray-900 rounded-bl-md"
                 }`}
               >
-                <div className="whitespace-pre-wrap leading-relaxed">{message.content}</div>
+                <div className="whitespace-pre-wrap leading-relaxed"><ReactMarkdown>{message.content}</ReactMarkdown></div>
               </div>
             </div>
           ))
@@ -105,7 +106,7 @@ export default function Chat() {
           />
           <button
             type="submit"
-            className="p-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
+            className="p-3 bg-gradient-to-r from-gray-600 to-black text-white rounded-xl hover:from-blue-700 hover:to-black focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
             disabled={!input.trim() || isLoading}
           >
             {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
