@@ -38,15 +38,7 @@ export default function SvgRain({
   debug = false,
 }: SvgRainProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const mouseDataRef = useRef({
-    lastX: 0,
-    lastY: 0,
-    lastTime: 0,
-    frameCount: 0,
-  })
-
   const [debugInfo, setDebugInfo] = useState({
-    speed: 0,
     inTarget: false,
     spawned: 0,
   })
@@ -67,7 +59,7 @@ export default function SvgRain({
       img.src = `/logo-cluster/${name}`
       img.className = "falling-svg"
 
-      const size = Math.min(Math.max(20 + speed * 0.3, 20), 60)
+      const size = Math.min(Math.max(30, 30), 50) // Fixed size range
       img.style.width = `${size}px`
       img.style.height = `${size}px`
       img.style.position = "absolute"
@@ -124,91 +116,55 @@ export default function SvgRain({
       const rect = targetElement.getBoundingClientRect()
       const container = containerRef.current
 
-      container.style.position = "absolute"
-      container.style.left = `${rect.left + window.scrollX}px`
-      container.style.top = `${rect.top + window.scrollY}px`
+      container.style.position = "fixed"
+      container.style.left = `${rect.left}px`
+      container.style.top = `${rect.top}px`
       container.style.width = `${rect.width}px`
       container.style.height = `${rect.height}px`
     }
 
     updateContainerPosition()
 
-    // Update position on scroll and resize
+    // Update position on resize only
     const handleUpdate = () => updateContainerPosition()
-    window.addEventListener("scroll", handleUpdate)
     window.addEventListener("resize", handleUpdate)
 
     return () => {
-      window.removeEventListener("scroll", handleUpdate)
       window.removeEventListener("resize", handleUpdate)
     }
   }, [targetSelector])
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const currentTime = Date.now()
-      const { lastX, lastY, lastTime, frameCount } = mouseDataRef.current
-
-      if (frameCount < 3) {
-        mouseDataRef.current = {
-          lastX: e.clientX,
-          lastY: e.clientY,
-          lastTime: currentTime,
-          frameCount: frameCount + 1,
-        }
-        return
-      }
-
-      const timeDelta = Math.max(currentTime - lastTime, 1)
-      const deltaX = e.clientX - lastX
-      const deltaY = e.clientY - lastY
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
-      const speed = (distance / timeDelta) * 16.67
-
+    const handleClick = (e: MouseEvent) => {
       const inTarget = isInTargetArea(e.clientX, e.clientY)
 
       if (debug) {
-        setDebugInfo((prev) => ({ ...prev, speed: Math.round(speed), inTarget }))
+        setDebugInfo((prev) => ({ ...prev, inTarget }))
       }
 
-      if (inTarget && speed > speedThreshold) {
-        if (mouseDataRef.current.frameCount % spawnRate === 0) {
-          spawnSvg(e.clientX, e.clientY, speed)
+      if (inTarget) {
+        // Spawn multiple SVGs on click for a more dramatic effect
+        for (let i = 0; i < spawnRate; i++) {
+          setTimeout(() => {
+            spawnSvg(e.clientX, e.clientY, 50) // Use a fixed "speed" value
+          }, i * 100) // Stagger the spawns slightly
         }
       }
-
-      mouseDataRef.current = {
-        lastX: e.clientX,
-        lastY: e.clientY,
-        lastTime: currentTime,
-        frameCount: frameCount + 1,
-      }
     }
 
-    let rafId: number
-    const throttledMouseMove = (e: MouseEvent) => {
-      if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        handleMouseMove(e)
-        rafId = 0
-      })
-    }
-
-    window.addEventListener("mousemove", throttledMouseMove)
+    window.addEventListener("click", handleClick)
     return () => {
-      window.removeEventListener("mousemove", throttledMouseMove)
-      if (rafId) cancelAnimationFrame(rafId)
+      window.removeEventListener("click", handleClick)
     }
-  }, [spawnSvg, isInTargetArea, speedThreshold, spawnRate, debug])
+  }, [spawnSvg, isInTargetArea, spawnRate, debug])
 
   return (
     <>
       <div ref={containerRef} className="pointer-events-none overflow-hidden" style={{ zIndex: 50 }} />
       {debug && (
         <div className="fixed top-4 right-4 bg-black text-white p-4 rounded z-[9999] font-mono text-sm">
-          <div>Speed: {debugInfo.speed}</div>
           <div>In Target: {debugInfo.inTarget ? "✅" : "❌"}</div>
-          <div>Threshold: {speedThreshold}</div>
+          <div>Spawn Rate: {spawnRate}</div>
           <div>Spawned: {debugInfo.spawned}</div>
           <div>Selector: {targetSelector}</div>
         </div>

@@ -11,7 +11,7 @@ import { StatsCard } from "@/components/return-chart"
 import DefiFlowDiagram from "@/components/defi-flow-diagram"
 import ReturnChart from "@/components/pricing-chart"
 import { FrequentlyAskedQuestions } from "@/components/FAQ"
-
+import { JLPExplanationSection } from "@/components/text-section-product"
 
 const tiers = [
   {
@@ -240,14 +240,7 @@ export default async function Pricing({
         </div>
       </div>
 
-      <Container>
-                        <Lead>
-        One of the key sources of alpha comes from JLP — the Jupiter Liquidity Provider token.Since launch, the Jupiter aggregator has generated over $180 million in fees, with 75% contractually allocated back to JLP holders. This creates a robust yield foundation for liquidity providers.However, holding JLP also exposes users to crypto price volatility and directional risk from trader PnL.
-
-Our strategy is designed to hedge these exposures by shorting the underlying assets (SOL, ETH, and BTC), effectively neutralizing market and PnL risks while capturing the protocol’s stable fee returns.
-      </Lead>
-      </Container>
-
+        <JLPExplanationSection/>
       <FrequentlyAskedQuestions />
       <Footer />
     </main>
