@@ -15,6 +15,7 @@ import { motion } from 'framer-motion'
 export function BentoSection() {
   return (
     <Container>
+      <section data-section="bento">
       <Subheading>Strategy -know more about how your capital grow</Subheading>
       <Heading as="h3" className="mt-2 max-w-3xl">
         Know more about what your capital can do.
@@ -84,6 +85,7 @@ export function BentoSection() {
           className="max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl"
         />
       </div>
+      </section>
     </Container>
   )
 }

@@ -50,7 +50,8 @@ export default function SvgRain({
 
       const targetRect = targetElement.getBoundingClientRect()
 
-      // Convert viewport coordinates to section-relative coordinates
+      // Since container is positioned fixed over the target section,
+      // we can use click coordinates directly relative to the container
       const relativeX = mouseX - targetRect.left
       const relativeY = mouseY - targetRect.top
 
@@ -59,7 +60,7 @@ export default function SvgRain({
       img.src = `/logo-cluster/${name}`
       img.className = "falling-svg"
 
-      const size = Math.min(Math.max(30, 30), 50) // Fixed size range
+      const size = Math.min(Math.max(30, 30), 50)
       img.style.width = `${size}px`
       img.style.height = `${size}px`
       img.style.position = "absolute"
@@ -76,7 +77,7 @@ export default function SvgRain({
 
       // Calculate fall distance within the section bounds
       const fallDistance = targetRect.height - relativeY + 100
-      const duration = Math.max(0.8, 2 - speed * 0.01)
+      const duration = 1.5 // Fixed duration for consistency
 
       gsap.to(img, {
         y: fallDistance,

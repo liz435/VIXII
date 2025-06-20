@@ -9,8 +9,13 @@ import { Heading, Subheading } from '@/components/text'
 import type { Metadata } from 'next'
 import './global.css'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
-// import SvgRain from '@/components/FallingObjects'
+import SvgRain from '@/components/FallingObjects'
 import { BentoSection } from '@/components/bentoSection'
+import FloatingChatDebug from "@/components/api/floating-chart-debug"
+import CSSDebug from "@/components/api/css-debug"
+import FloatingChat from '@/components/api/floating-chat'
+import TestVisibility from "@/components/api/test-visibility"
+import FloatingChatObvious from "@/components/api/floating-cha-obvious"
 
 export const metadata: Metadata = {
   description:
@@ -21,11 +26,16 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
+  <>
+
+    <FloatingChat />
     <SmoothScrollProvider>
+
       <Hero />
   
                            
       <main>
+
         <div className='mt-10'>
             <LogoCloud />
             </div>
@@ -34,12 +44,12 @@ export default function Home() {
           <FeatureSectionG />
 
           <div className="overflow-hidden">
-          {/* <SvgRain 
+          <SvgRain 
             targetSelector=".sectionThatRains" 
-            speedThreshold={2} 
             spawnRate={2}
             debug={false}
-          /> */}
+          />
+
             <Container className="select-none pb-24 sectionThatRains">
            
               <Heading as="h2" className="max-w-3xl">
@@ -92,5 +102,6 @@ export default function Home() {
       <Testimonials />
       <Footer />
     </SmoothScrollProvider>
+    </>
   )
 }
