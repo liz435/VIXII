@@ -10,25 +10,25 @@ import Image from 'next/image'
 const screenshots = [
   {
     id: 1,
-    src: '/screenshots/alpha.png',
+    src: '/screenshots/VIXII.jpg',
     alt: 'Main dashboard view',
     title: 'Complete Sales Pipeline Overview',
   },
   {
     id: 2,
-    src: '/screenshots/beta.png',
+    src: '/screenshots/alpha.png',
     alt: 'Analytics dashboard',
     title: 'Advanced Analytics & Insights',
   },
   {
     id: 3,
-    src: '/screenshots/profile.png',
+    src: '/screenshots/beta.png',
     alt: 'Deal management interface',
     title: 'Deal Management Made Simple',
   },
   {
     id: 4,
-    src: '/screenshots/networking.png',
+    src: '/screenshots/usdc-vault.png',
     alt: 'Reporting interface',
     title: 'Comprehensive Reporting Tools',
   },

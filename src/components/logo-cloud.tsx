@@ -9,9 +9,9 @@ const logos = [
   { alt: "jupiter", src: "/logo-cloud/jupiter.svg" },
   { alt: "solana", src: "/logo-cluster/solana-sol-logo.svg" },
   { alt: "drift", src: "/logo-cloud/drift2.png" },
-  { alt: "btc", src: "/logo-cluster/bitcoin-btc-logo.svg" },
+  // { alt: "btc", src: "/logo-cluster/bitcoin-btc-logo.svg" },
   { alt: "jup", src: "/logo-cluster/jupiter-ag-jup-logo.svg" },
-  { alt: "eth", src: "/logo-cluster/ethereum-eth-logo.svg" },
+  // { alt: "eth", src: "/logo-cluster/ethereum-eth-logo.svg" },
   { alt: "usdc", src: "/logo-cluster/usd-coin-usdc-logo.svg" },
   { alt: "usdt", src: "/logo-cluster/tether-usdt-logo.svg" },
 ]

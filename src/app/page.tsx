@@ -11,11 +11,7 @@ import './global.css'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
 import SvgRain from '@/components/FallingObjects'
 import { BentoSection } from '@/components/bentoSection'
-import FloatingChatDebug from "@/components/api/floating-chart-debug"
-import CSSDebug from "@/components/api/css-debug"
-import FloatingChat from '@/components/api/floating-chat'
-import TestVisibility from "@/components/api/test-visibility"
-import FloatingChatObvious from "@/components/api/floating-cha-obvious"
+
 
 export const metadata: Metadata = {
   description:
@@ -28,7 +24,7 @@ export default function Home() {
   return (
   <>
 
-    <FloatingChat />
+ 
     <SmoothScrollProvider>
 
       <Hero />
@@ -94,6 +90,7 @@ export default function Home() {
                 </div>
               </div>
             </Container>
+            
           </div>
           <BentoSection />
         </div>

@@ -11,12 +11,84 @@ import { Keyboard } from '@/components/keyboard'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { motion } from 'framer-motion'
+import ReturnChart from './pricing-chart'
+
 
 export function BentoSection() {
   return (
     <Container>
       <section data-section="bento">
-      <Subheading>Strategy -know more about how your capital grow</Subheading>
+
+      <Subheading className="mt-16">Performance</Subheading>
+      <Heading as="h3" className="mb-12 mt-2 max-w-3xl">
+        Discover Your Potential Returns.
+      </Heading>
+
+      <Suspense>
+        <LightThemedChart />
+      </Suspense>
+
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-4 lg:grid-rows-1">
+
+      {/* <BentoCard
+          eyebrow="Limitless"
+          title="Actively Managed Trend Following Strategy"
+          description="100% USDT-denominated return in 2024, with a maximum drawdown of 30%."
+          graphic={
+            <div className="flex size-full pl-10 pt-10">
+              <Keyboard highlighted={['U', 'S', 'D', 'T']} />
+            </div>
+          }
+          className="lg:col-span-2 lg:rounded-bl-4xl"
+        />
+        <BentoCard
+          eyebrow="Confidence"
+          title="Hedging and Arbitrage Strategy Based on JLP"
+          description="40% USDT-denominated return in 2024, with a maximum drawdown of 1%"
+          graphic={<LogoCluster />}
+          className="lg:col-span-2"
+        /> */}
+
+        <BentoCard
+          eyebrow="USDC Accounting"
+          title="Actively Managed Trend Following Strategy"
+          description="100% USDT-denominated return in 2024, with a maximum drawdown of 30%."
+          graphic={
+            // <div className="flex size-full pl-10 pt-10">
+            //   <Keyboard highlighted={['U', 'S', 'D', 'T']} />
+            // </div>
+              <ReturnChart
+                monthlyReturnRate={Math.round(2.6)}
+                title="Higher Return Comparison"
+                description="Comparing 2.5% monthly returns against US Treasury yields"
+                startDate={new Date(2024, 0, 1)}
+              /> 
+
+
+          }
+          img='/screenshots/usdc-vault.png'
+                  url="/pricing"
+          className="lg:col-span-2 lg:rounded-bl-4xl"
+        />
+        <BentoCard
+          eyebrow="SOL Accounting"
+          title="Hedging and Arbitrage Strategy Based on JLP"
+          description="40% USDT-denominated return in 2024, with a maximum drawdown of 1%"
+          graphic={              <ReturnChart
+            monthlyReturnRate={0.26}
+            title="Higher Return Comparison"
+            description="Comparing 2.5% monthly returns against US Treasury yields"
+            startDate={new Date(2024, 0, 1)}
+          /> }
+          className="lg:col-span-2"
+          img='/screenshots/sol-vault.png'
+          url="/pricing/#sol-vault"
+
+        />
+  
+      </div>
+
+      <Subheading className='mt-32'>Strategy -know more about how your capital grow</Subheading>
       <Heading as="h3" className="mt-2 max-w-3xl">
         Know more about what your capital can do.
       </Heading>
@@ -49,42 +121,7 @@ export function BentoSection() {
         />
       </div>
 
-      <Subheading className="mt-16">Performance</Subheading>
-      <Heading as="h3" className="mb-12 mt-2 max-w-3xl">
-        Discover Your Potential Returns.
-      </Heading>
-
-      <Suspense>
-        <LightThemedChart />
-      </Suspense>
-
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
-        <BentoCard
-          eyebrow="Limitless"
-          title="Actively Managed Trend Following Strategy"
-          description="100% USDT-denominated return in 2024, with a maximum drawdown of 30%."
-          graphic={
-            <div className="flex size-full pl-10 pt-10">
-              <Keyboard highlighted={['U', 'S', 'D', 'T']} />
-            </div>
-          }
-          className="lg:col-span-2 lg:rounded-bl-4xl"
-        />
-        <BentoCard
-          eyebrow="Confidence"
-          title="Hedging and Arbitrage Strategy Based on JLP"
-          description="40% USDT-denominated return in 2024, with a maximum drawdown of 1%"
-          graphic={<LogoCluster />}
-          className="lg:col-span-2"
-        />
-        <BentoCard
-          eyebrow="remote"
-          title="Globally"
-          description="VIXII can bring you steady return no matter where you are."
-          graphic={<Map />}
-          className="max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl"
-        />
-      </div>
+     
       </section>
     </Container>
   )

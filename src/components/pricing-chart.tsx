@@ -189,9 +189,9 @@ export default function ReturnChart({
     if (active && payload && payload.length > 0) {
       return (
         <div className="rounded-lg border border-cyan-500/30 bg-gray-900/95 p-4 shadow-2xl backdrop-blur-sm">
-          <p className="mb-2 font-semibold text-cyan-400">
+          {/* <p className="mb-2 font-semibold text-cyan-400">
             {payload[0]?.payload?.timestamp}
-          </p>
+          </p> */}
           {payload.map(
             (entry, index) =>
               entry.value !== null && (

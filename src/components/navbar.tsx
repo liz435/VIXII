@@ -12,6 +12,7 @@ import { PlusGrid, PlusGridItem, PlusGridRow } from "./plus-grid"
 import { Button } from "@/components/button"
 import { ArrowUpRight, BarChart3, MessageSquare, Megaphone } from "lucide-react"
 
+
 const links = [
   { href: "/company", label: "About Us" },
   { href: "/contact", label: "Contact" },
@@ -202,7 +203,7 @@ function DesktopNav() {
 
 <PlusGridItem className="relative flex">
   <Button 
-    href="/login" 
+    href="https://app.drift.trade/vaults/strategy-vaults/mc1UFoEpaiyPVY4njGGerwLL7XzTVCQiwx6eUtuoDfR" 
     className="relative mt-3 mb-3 group overflow-hidden transform transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(0,0,0,0.4)] active:scale-95 active:translate-y-0"
   >
     Login &nbsp; <ArrowUpRight strokeWidth={1} className="transition-transform duration-300 group-hover:rotate-12" />

@@ -6,6 +6,7 @@ import { GradientBackground } from '@/components/gradient'
 import { Navbar } from '@/components/navbar'
 import { Heading, Lead, Subheading } from '@/components/text'
 import type { Metadata } from 'next'
+import SmoothScrollProvider from '@/components/SmoothScrollProvider'
 
 export const metadata: Metadata = {
   title: 'Company',
@@ -420,6 +421,7 @@ function Careers() {
 export default function Company() {
   return (
     <main className="overflow-hidden">
+      <SmoothScrollProvider>
       <GradientBackground />
       <Container>
         <Navbar />
@@ -429,6 +431,7 @@ export default function Company() {
       <Investors />
       {/* <Careers /> */}
       <Footer />
+      </SmoothScrollProvider>
     </main>
   )
 }

@@ -129,6 +129,13 @@ export default function Chat() {
           >
             Yield farming
           </button>
+          <button
+            onClick={() => handleInputChange({ target: { value: "Explain alpha" } } as any)}
+            className="px-3 py-1.5 text-xs bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-colors"
+            disabled={isLoading}
+          >
+            What is Alpha?
+          </button>
         </div>
       </div>
     </div>

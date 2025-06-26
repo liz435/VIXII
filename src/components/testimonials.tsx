@@ -11,7 +11,7 @@ import {
   useSpring,
   type HTMLMotionProps,
 } from 'framer-motion'
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react'
 import useMeasure, { type RectReadOnly } from 'react-use-measure'
 import { Container } from './container'
 import { Link } from './link'
@@ -106,43 +106,51 @@ function TestimonialCard({
   })
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ opacity }}
-      {...props}
-      className="relative flex aspect-[9/16] w-72 shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-end overflow-hidden rounded-3xl sm:aspect-[3/4] sm:w-96"
-    >
-      <img
-        alt=""
-        src={img}
-        className="absolute inset-x-0 top-0 aspect-square w-full object-cover"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black from-[calc(7/16*100%)] ring-1 ring-inset ring-gray-950/10 sm:from-25%"
-      />
-      <figure className="relative p-10">
-        <blockquote>
-          <p className="relative text-md text-white">
-            <span aria-hidden="true" className="absolute -translate-x-full">
-              “
-            </span>
-            {children}
-            <span aria-hidden="true" className="absolute">
-              ”
-            </span>
-          </p>
-        </blockquote>
-        <figcaption className="mt-6 border-t border-white/20 pt-6">
-          <p className="text-sm/6 font-medium text-white">{name}</p>
-          <p className="text-sm/6 font-medium">
-            <span className="bg-gradient-to-r from-[#fff1be] from-[28%] via-[#ee87cb] via-[70%] to-[#b060ff] bg-clip-text text-transparent">
-              {title}
-            </span>
-          </p>
-        </figcaption>
-      </figure>
-    </motion.div>
+<motion.div
+  ref={ref}
+  style={{ opacity }}
+  {...props}
+  className="relative flex aspect-[9/16] w-72 shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-between overflow-hidden rounded-3xl bg-gray-900/80 backdrop-blur-md shadow-xl ring-1 ring-inset ring-white/10 sm:aspect-[3/4] sm:w-96 transition-all"
+>
+  {/* Overlay */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/70 via-black/50 to-transparent"
+  />
+
+  <figure className="relative z-10 flex h-full flex-col justify-between p-20">
+    {/* Quote */}
+    <blockquote className="flex-1">
+      <p className="relative text-base text-white leading-relaxed">
+        <span
+          aria-hidden="true"
+          className="absolute left-[-0.6em] top-[-0.3em] text-4xl text-white/40 leading-none"
+        >
+          “
+        </span>
+        <span className="block">{children}</span>
+        <span
+          aria-hidden="true"
+          className="absolute bottom-[-0.3em] right-[-0.6em] text-4xl text-white/40 leading-none"
+        >
+          ”
+        </span>
+      </p>
+    </blockquote>
+
+    {/* Footer */}
+    <figcaption className="mt-8 border-t border-white/20 pt-4">
+      <p className="text-sm font-semibold text-white">{name}</p>
+      <p className="text-sm font-medium text-white/70 mt-0.5">
+        <span className="bg-gradient-to-r from-[#fff1be] via-[#ee87cb] to-[#b060ff] bg-clip-text text-transparent">
+          {title}
+        </span>
+      </p>
+    </figcaption>
+  </figure>
+</motion.div>
+
+
   )
 }
 
@@ -168,16 +176,101 @@ export function Testimonials() {
   let { scrollX } = useScroll({ container: scrollRef })
   let [setReferenceWindowRef, bounds] = useMeasure()
   let [activeIndex, setActiveIndex] = useState(0)
+  let [isUserInteracting, setIsUserInteracting] = useState(false)
+  let autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Double the testimonials array for seamless infinite scroll
+  const duplicatedTestimonials = [...testimonials, ...testimonials]
 
   useMotionValueEvent(scrollX, 'change', (x) => {
-    setActiveIndex(Math.floor(x / scrollRef.current!.children[0].clientWidth))
+    if (scrollRef.current) {
+      const cardWidth = scrollRef.current.children[0].clientWidth
+      const currentIndex = Math.floor(x / cardWidth)
+      setActiveIndex(currentIndex % testimonials.length)
+    }
   })
 
   function scrollTo(index: number) {
-    let gap = 32
-    let width = (scrollRef.current!.children[0] as HTMLElement).offsetWidth
-    scrollRef.current!.scrollTo({ left: (width + gap) * index })
+    if (scrollRef.current) {
+      let gap = 32
+      let width = (scrollRef.current.children[0] as HTMLElement).offsetWidth
+      scrollRef.current.scrollTo({ left: (width + gap) * index, behavior: 'smooth' })
+    }
   }
+
+  // Auto scroll function
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current)
+    }
+
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (!isUserInteracting && scrollRef.current) {
+        const gap = 32
+        const cardWidth = (scrollRef.current.children[0] as HTMLElement).offsetWidth
+        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth
+        const currentScroll = scrollRef.current.scrollLeft
+        const nextScroll = currentScroll + cardWidth + gap
+
+        if (nextScroll >= maxScroll) {
+          // Reset to beginning for infinite scroll
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' })
+        } else {
+          scrollRef.current.scrollTo({ left: nextScroll, behavior: 'smooth' })
+        }
+      }
+    }, 2000) // Change slide every 3 seconds
+  }, [isUserInteracting])
+
+  // Handle user interaction
+  const handleMouseEnter = () => {
+    setIsUserInteracting(true)
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    setIsUserInteracting(false)
+    startAutoScroll()
+  }
+
+  // Initialize auto scroll
+  useEffect(() => {
+    startAutoScroll()
+    
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current)
+      }
+    }
+  }, [startAutoScroll])
+
+  // Handle scroll reset for infinite effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current && !isUserInteracting) {
+        const scrollContainer = scrollRef.current
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth
+        const currentScroll = scrollContainer.scrollLeft
+        const cardWidth = (scrollContainer.children[0] as HTMLElement).offsetWidth
+        const gap = 32
+        const singleSetWidth = (cardWidth + gap) * testimonials.length
+
+        // If we've scrolled past the first set, reset to the equivalent position in the first set
+        if (currentScroll >= singleSetWidth) {
+          const equivalentPosition = currentScroll - singleSetWidth
+          scrollContainer.scrollTo({ left: equivalentPosition })
+        }
+      }
+    }
+
+    const scrollContainer = scrollRef.current
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll)
+      return () => scrollContainer.removeEventListener('scroll', handleScroll)
+    }
+  }, [isUserInteracting])
 
   return (
     <div className="overflow-hidden py-32">
@@ -191,6 +284,8 @@ export function Testimonials() {
       </Container>
       <div
         ref={scrollRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className={clsx([
           'mt-16 flex gap-8 px-[var(--scroll-padding)]',
           '[scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
@@ -198,15 +293,15 @@ export function Testimonials() {
           '[--scroll-padding:max(theme(spacing.6),calc((100vw-theme(maxWidth.2xl))/2))] lg:[--scroll-padding:max(theme(spacing.8),calc((100vw-theme(maxWidth.7xl))/2))]',
         ])}
       >
-        {testimonials.map(({ img, name, title, quote }, testimonialIndex) => (
+        {duplicatedTestimonials.map(({ img, name, title, quote }, testimonialIndex) => (
           <TestimonialCard
-            key={testimonialIndex}
+            key={`${testimonialIndex}-${testimonialIndex >= testimonials.length ? 'duplicate' : 'original'}`}
             name={name}
             title={title}
             img={img}
             bounds={bounds}
             scrollX={scrollX}
-            onClick={() => scrollTo(testimonialIndex)}
+            onClick={() => scrollTo(testimonialIndex % testimonials.length)}
           >
             {quote}
           </TestimonialCard>

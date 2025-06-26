@@ -83,7 +83,9 @@ export function Hero() {
                 animate="visible"
                 variants={startButtonVariants}
               >
-                <Button className="group relative transform overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-[0_10px_25px_rgba(0,0,0,0.6)] active:translate-y-0 active:scale-95">
+                <Button 
+                href='https://app.vectis.finance/vault/jlp-navigator-usdc?tab=faq'
+                className="group relative transform overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-[0_10px_25px_rgba(0,0,0,0.6)] active:translate-y-0 active:scale-95">
                   Get started
                 </Button>
               </motion.div>
@@ -94,6 +96,7 @@ export function Hero() {
                 variants={strategyButtonVariants}
               >
                 <Button
+                href='/pricing'
                   variant="secondary"
                   className="group transition-transform duration-300 ease-out hover:scale-110"
                 >

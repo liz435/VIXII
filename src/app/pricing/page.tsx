@@ -12,17 +12,21 @@ import DefiFlowDiagram from "@/components/defi-flow-diagram"
 import ReturnChart from "@/components/pricing-chart"
 import { FrequentlyAskedQuestions } from "@/components/FAQ"
 import { JLPExplanationSection } from "@/components/text-section-product"
+import SmoothScrollProvider from '@/components/SmoothScrollProvider'
+import  Image  from "next/image"
 
 const tiers = [
   {
-    name: "Strategy" as const,
+    name: "Strategy USDC" as const,
     slug: "starter",
     description: "This strategy is perfect for investors who want reliable performance without getting caught in the ups and downs of crypto markets",
-    priceMonthly: 1.8,
-    href: "#",
+    priceMonthly: 7.4,
+    days:'84',
+    img:'/screenshots/usdc-vault.png',
+    href: "https://app.drift.trade/vaults/strategy-vaults/mc1UFoEpaiyPVY4njGGerwLL7XzTVCQiwx6eUtuoDfR",
     highlights: [
       { description: "Make the fund publicly available on Drift" },
-      { description: "USDT-based accounting" },
+      { description: "USDC-based accounting" },
     ],
     features: [
       { section: "Features", name: "Accounts", value: 3 },
@@ -40,14 +44,16 @@ const tiers = [
     ],
   },
   {
-    name: "Strategy 2" as const,
+    name: "Strategy SOL" as const,
     slug: "growth",
     description: "All the extras for your growing team.",
-    priceMonthly: 3,
-    href: "#",
+    priceMonthly: 0.25,
+    days:'7',
+    img:'/screenshots/sol-vault.png',
+    href: "https://app.drift.trade/vaults/strategy-vaults/AAMqcyowCHa9dH7ixvQXbcCMYfUmrpCiGNsCEqF6dwxG",
     highlights: [
       { description: "Make the fund publicly available on Drift" },
-      { description: "BTC-based accounting" },
+      { description: "SOL-based accounting" },
     ],
     features: [
       { section: "Features", name: "Accounts", value: 10 },
@@ -63,35 +69,35 @@ const tiers = [
       { section: "Support", name: "24 / 7 call center support", value: true },
       { section: "Support", name: "Dedicated account manager", value: false },
     ],
-  },
-  {
-    name: "Strategy 3" as const,
-    slug: "enterprise",
-    description: "Added flexibility to close deals at scale.",
-    priceMonthly: 6,
-    href: "#",
-    highlights: [
-      { description: "Unlimited active team members" },
-      { description: "Unlimited deal progress boards" },
-      { description: "Source leads from over 100 verified platforms" },
-      { description: "RadiantAI integrations" },
-      { description: "Unlimited competitor analyses" },
-    ],
-    features: [
-      { section: "Features", name: "Accounts", value: "Unlimited" },
-      { section: "Features", name: "Deal progress boards", value: "Unlimited" },
-      { section: "Features", name: "Sourcing platforms", value: "100+" },
-      { section: "Features", name: "Contacts", value: "Unlimited" },
-      { section: "Features", name: "AI assisted outreach", value: true },
-      { section: "Analysis", name: "Competitor analysis", value: "Unlimited" },
-      { section: "Analysis", name: "Dashboard reporting", value: true },
-      { section: "Analysis", name: "Community insights", value: true },
-      { section: "Analysis", name: "Performance analysis", value: true },
-      { section: "Support", name: "Email support", value: true },
-      { section: "Support", name: "24 / 7 call center support", value: true },
-      { section: "Support", name: "Dedicated account manager", value: true },
-    ],
-  },
+  }
+  // {
+  //   name: "Strategy 3" as const,
+  //   slug: "enterprise",
+  //   description: "Added flexibility to close deals at scale.",
+  //   priceMonthly: 6,
+  //   href: "#",
+  //   highlights: [
+  //     { description: "Unlimited active team members" },
+  //     { description: "Unlimited deal progress boards" },
+  //     { description: "Source leads from over 100 verified platforms" },
+  //     { description: "RadiantAI integrations" },
+  //     { description: "Unlimited competitor analyses" },
+  //   ],
+  //   features: [
+  //     { section: "Features", name: "Accounts", value: "Unlimited" },
+  //     { section: "Features", name: "Deal progress boards", value: "Unlimited" },
+  //     { section: "Features", name: "Sourcing platforms", value: "100+" },
+  //     { section: "Features", name: "Contacts", value: "Unlimited" },
+  //     { section: "Features", name: "AI assisted outreach", value: true },
+  //     { section: "Analysis", name: "Competitor analysis", value: "Unlimited" },
+  //     { section: "Analysis", name: "Dashboard reporting", value: true },
+  //     { section: "Analysis", name: "Community insights", value: true },
+  //     { section: "Analysis", name: "Performance analysis", value: true },
+  //     { section: "Support", name: "Email support", value: true },
+  //     { section: "Support", name: "24 / 7 call center support", value: true },
+  //     { section: "Support", name: "Dedicated account manager", value: true },
+  //   ],
+  // },
 ]
 
 function Header() {
@@ -114,9 +120,11 @@ function PricingCards() {
     <div className="relative py-24">
       <Gradient className="absolute inset-x-2 bottom-0 top-48 rounded-4xl ring-1 ring-inset ring-black/5" />
       <Container className="relative">
-        <div className="grid grid-rows-1 gap-8 lg:grid-rows-3">
+        <div className="grid grid-rows-1 gap-8 lg:grid-rows-2">
           {tiers.map((tier, tierIndex) => (
-            <PricingCard key={tierIndex} tier={tier} />
+            <div key={tierIndex} id={tierIndex === 1 ? "sol-vault" : undefined}>
+              <PricingCard tier={tier} />
+            </div>
           ))}
         </div>
         <div className="p-16"></div>
@@ -144,8 +152,8 @@ function PricingCard({ tier }: { tier: (typeof tiers)[number] }) {
               <div className="mt-8 flex items-center gap-4">
                 <div className="text-5xl font-medium text-gray-950">{tier.priceMonthly}%</div>
                 <div className="text-sm/5 text-gray-950/75">
-                  <p>return</p>
-                  <p>per month</p>
+                  <p>APY</p>
+                  <p>{tier.days} Days</p>
                 </div>
               </div>
               <div className="mt-8">
@@ -167,12 +175,22 @@ function PricingCard({ tier }: { tier: (typeof tiers)[number] }) {
 
             {/* Right: Graph */}
             <div className="flex-1">
-              <ReturnChart
-                monthlyReturnRate={tier.priceMonthly}
+              {/* <ReturnChart
+                monthlyReturnRate={Math.round(tier.priceMonthly/3)}
                 title="Higher Return Comparison"
                 description="Comparing 2.5% monthly returns against US Treasury yields"
                 startDate={new Date(2024, 0, 1)}
+              /> */}
+
+
+              <Image
+                src={tier.img?? '/screenshots/usdc-vault.png'} // path must start with `/` if it's in public folder, e.g. "/images/vault.png"
+                alt={tier.name || 'Vault image'}
+                width={400}
+                height={300}
+                className="w-full h-full object-cover rounded-2xl"
               />
+
             </div>
           </div>
         </div>
@@ -228,6 +246,7 @@ export default async function Pricing({
 
   return (
     <main className="overflow-hidden">
+      <SmoothScrollProvider>
       <Gradient />
       <Container>
         <Navbar />
@@ -243,6 +262,7 @@ export default async function Pricing({
         <JLPExplanationSection/>
       <FrequentlyAskedQuestions />
       <Footer />
+      </SmoothScrollProvider>
     </main>
   )
 }
